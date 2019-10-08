@@ -36,7 +36,6 @@
         android:src="@drawable/rleftbutton"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="20dp"
-
         android:layout_marginBottom="15dp"
         />
 
@@ -69,8 +68,6 @@
             android:src="@drawable/group1"
 
             />
-
-
 
 
             <LinearLayout
@@ -118,7 +115,6 @@
                     android:layout_marginTop="5dp"
                     ></LinearLayout>
 
-
                 
             </LinearLayout>
 
@@ -127,6 +123,7 @@
     </FrameLayout>
 
     <ImageView
+        android:id="@+id/signIn"
         android:layout_above="@+id/signUp"
         android:layout_width="130dp"
         android:layout_height="50dp"
@@ -134,9 +131,6 @@
         android:scaleType="fitXY"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-
-
-
         />
 
 </RelativeLayout>
