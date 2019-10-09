@@ -1,5 +1,6 @@
 package au.edu.sydney.comp5216.cakefactory;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -45,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
                     mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_design:
-                    mTextMessage.setText(R.string.title_dashboard);
+                    Intent it = new Intent(MainActivity.this,Step0Activity.class);
+                    startActivity(it);
                     return true;
                 case R.id.navigation_me:
                     mTextMessage.setText(R.string.title_notifications);
