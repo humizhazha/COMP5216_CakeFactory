@@ -10,6 +10,8 @@ public class Step2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.step2);
+        this.overridePendingTransition(R.anim.anim_slide_in_left,
+                R.anim.anim_slide_out_left);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
