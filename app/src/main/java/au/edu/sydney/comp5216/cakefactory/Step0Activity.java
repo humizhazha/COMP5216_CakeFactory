@@ -23,6 +23,7 @@ public class Step0Activity extends AppCompatActivity {
     }
     public void startDesign(View view) {
         Intent intent = new Intent(Step0Activity.this, Step1Activity.class);
+        startActivity(intent);
 //        if (intent != null) {
 //            // put "extras" into the bundle for access in the edit activity
 //            startActivityForResult(intent, ADD_ITEM_REQUEST_CODE);

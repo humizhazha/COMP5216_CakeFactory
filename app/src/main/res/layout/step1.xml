@@ -5,7 +5,8 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Step0Activity">
+    android:background="@drawable/background"
+    tools:context=".Step1Activity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,18 +21,27 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginRight="10dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <custom_font.EditText_Roboto_Bold
-                    android:layout_width="0dp"
+                <custom_font.MyTextView_Roboto_Bold
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Select your cake type"
+                    android:text="Step 1"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="25dp" />
+
+                <custom_font.MyTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="20dp"
+                    android:text="Select your cake type below"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="18dp" />
 
 
             </LinearLayout>
@@ -86,6 +96,7 @@
                             android:layout_width="90dp"
                             android:layout_height="90dp"
                             android:layout_gravity="center"
+                            android:background="@drawable/ic_border"
                             android:src="@drawable/ic_birthday" />
 
 
@@ -129,6 +140,30 @@
 
                 </LinearLayout>
 
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/back" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="210dp"
+                    android:layout_gravity="center"
+                    android:onClick="goNext"
+                    android:src="@drawable/nex" />
 
             </LinearLayout>
         </LinearLayout>

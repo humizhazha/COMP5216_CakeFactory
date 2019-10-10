@@ -22,6 +22,7 @@
         <activity android:name=".SignUpActivity"></activity>
         <activity android:name=".Step0Activity"></activity>
         <activity android:name=".Step1Activity"></activity>
+        <activity android:name=".Step2Activity"></activity>
     </application>
 
 </manifest>
