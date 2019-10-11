@@ -23,6 +23,7 @@
         <activity android:name=".Step0Activity"></activity>
         <activity android:name=".Step1Activity"></activity>
         <activity android:name=".Step2Activity"></activity>
+        <activity android:name=".Step3Activity"></activity>
     </application>
 
 </manifest>

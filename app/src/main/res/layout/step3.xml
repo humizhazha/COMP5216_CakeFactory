@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context=".Step2Activity">
+    tools:context=".Step3Activity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Step 1"
+                    android:text="Step 3"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="25dp" />
 
@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginTop="20dp"
-                    android:text="Select your cake type below"
+                    android:text="Select your cake flavour below"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="18dp" />
 
@@ -75,7 +75,7 @@
                                 android:layout_height="90dp"
                                 android:layout_gravity="center"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/ic_wedding" />
+                                android:src="@drawable/ic_chocolate" />
 
 
                             <custom_font.MyTextView
@@ -84,7 +84,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginTop="3dp"
                                 android:gravity="center"
-                                android:text="Wedding Cake"
+                                android:text="Chocolate"
                                 android:textColor="@color/colorTex"
                                 android:textSize="@dimen/select_text_size" />
 
@@ -100,8 +100,8 @@
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
                                 android:layout_gravity="center"
-                                android:background="@drawable/ic_birthday"
-                                android:src="@drawable/ic_circle_cake" />
+                                android:background="@drawable/ic_border"
+                                android:src="@drawable/ic_cheese" />
 
 
                             <custom_font.MyTextView
@@ -110,7 +110,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginTop="3dp"
                                 android:gravity="center"
-                                android:text="Birthday Cake"
+                                android:text="Cheese"
                                 android:textColor="@color/colorTex"
                                 android:textSize="@dimen/select_text_size" />
 
@@ -133,7 +133,7 @@
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/roll" />
+                                android:src="@drawable/ic_matcha" />
 
 
                             <custom_font.MyTextView
@@ -142,7 +142,25 @@
                                 android:layout_gravity="center"
                                 android:layout_marginTop="3dp"
                                 android:gravity="center"
-                                android:text="Roll"
+                                android:text="Matcha"
+                                android:textColor="@color/colorTex"
+                                android:textSize="@dimen/select_text_size" />
+
+                            <ImageView
+                                android:layout_width="90dp"
+                                android:layout_height="90dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_strawberry" />
+
+
+                            <custom_font.MyTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="3dp"
+                                android:gravity="center"
+                                android:text="Strawberry"
                                 android:textColor="@color/colorTex"
                                 android:textSize="@dimen/select_text_size" />
 
@@ -159,7 +177,7 @@
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/slice" />
+                                android:src="@drawable/ic_vanillia" />
 
 
                             <custom_font.MyTextView
@@ -168,71 +186,14 @@
                                 android:layout_gravity="center"
                                 android:layout_marginTop="3dp"
                                 android:gravity="center"
-                                android:text="Slice"
+                                android:text="Vanilla"
                                 android:textColor="@color/colorTex"
                                 android:textSize="@dimen/select_text_size" />
 
                         </LinearLayout>
 
                     </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_pie" />
-
-
-                            <custom_font.MyTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="3dp"
-                                android:gravity="center"
-                                android:text="Pie"
-                                android:textColor="@color/colorTex"
-                                android:textSize="@dimen/select_text_size" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_cupcake" />
-
-
-                            <custom_font.MyTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="3dp"
-                                android:gravity="center"
-                                android:text="Cupcake"
-                                android:textColor="@color/colorTex"
-                                android:textSize="@dimen/select_text_size" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
                 </LinearLayout>
 
 
