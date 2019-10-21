@@ -23,4 +23,8 @@ public class Step2Activity extends AppCompatActivity {
         startActivity(intent);
 
     }
+    public void goBack(View view) {
+        Intent intent = new Intent(Step2Activity.this, Step1Activity.class);
+        startActivity(intent);
+    }
 }
