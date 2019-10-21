@@ -51,10 +51,10 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
                     Intent i = new Intent(context, Recommendations.class);
                     context.startActivity(i);}
                 if(position == 1){
-                    Intent i = new Intent(context, EditProfile.class);
+                    Intent i = new Intent(context, Recommendations.class);
                     context.startActivity(i);}
                 if(position == 2){
-                    Intent i = new Intent(context, EditProfile.class);
+                    Intent i = new Intent(context, Recommendations.class);
                     context.startActivity(i);}
             }
         });

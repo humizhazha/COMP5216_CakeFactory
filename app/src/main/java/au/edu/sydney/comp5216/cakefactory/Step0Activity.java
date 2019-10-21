@@ -3,32 +3,43 @@ package au.edu.sydney.comp5216.cakefactory;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import custom_font.ExpandableHeightListView;
 
-public class Step0Activity extends AppCompatActivity {
+public class Step0Activity extends Fragment {
 
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.start_design);
-
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-
     }
-    public void startDesign(View view) {
-        Intent intent = new Intent(Step0Activity.this, Step1Activity.class);
-        startActivity(intent);
-//        if (intent != null) {
-//            // put "extras" into the bundle for access in the edit activity
-//            startActivityForResult(intent, ADD_ITEM_REQUEST_CODE);
-//            itemsAdapter.notifyDataSetChanged();
-//            saveItemsToDatabase();
-//        }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.start_design, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        Button startDesign = getActivity().findViewById(R.id.startDesign);
+        startDesign.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), Step1Activity.class));
+            }
+        });
     }
 }
