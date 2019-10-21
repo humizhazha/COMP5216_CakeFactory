@@ -22,14 +22,15 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        Bundle extras = getIntent().getExtras();
-        if(extras != null && extras.containsKey("Profile")) {
-            loadFragment(new Profile());
-        } else if (extras != null && extras.containsKey("Design")){
-            loadFragment(new Step0Activity());
-        } else {
-            loadFragment(new Discovery());
-        }
+//        Bundle extras = getIntent().getExtras();
+//        if(extras != null && extras.containsKey("Profile")) {
+//            loadFragment(new Profile());
+//        } else if (extras != null && extras.containsKey("Design")){
+//            loadFragment(new Step0Activity());
+//        } else {
+//            loadFragment(new Discovery());
+//        }
+        loadFragment(new Profile());
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

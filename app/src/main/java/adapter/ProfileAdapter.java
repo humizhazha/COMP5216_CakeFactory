@@ -14,9 +14,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import au.edu.sydney.comp5216.cakefactory.EditProfile;
-import au.edu.sydney.comp5216.cakefactory.Favourites;
-import au.edu.sydney.comp5216.cakefactory.Profile;
 import au.edu.sydney.comp5216.cakefactory.R;
 import au.edu.sydney.comp5216.cakefactory.Recommendations;
 import model.ProfileModel;

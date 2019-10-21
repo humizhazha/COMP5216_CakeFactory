@@ -1,27 +1,19 @@
 package au.edu.sydney.comp5216.cakefactory;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.FrameMetrics;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.roughike.bottombar.BottomBar;
-
 import java.util.ArrayList;
-import java.util.Locale;
 
 import adapter.ProfileAdapter;
 import model.ProfileModel;
@@ -34,13 +26,11 @@ public class Profile extends Fragment {
 
     private Integer[] icons = {
             R.drawable.ic_inbox,
-            R.drawable.ic_profile,
-            R.drawable.ic_settings};
+            R.drawable.ic_profile};
     private Integer arrow = R.drawable.ic_chevron_right;
     private String[] titles = {
             "Recommendations",
-            "Profile",
-            "Settings"};
+            "Profile"};
 
     public Profile() {
     }
@@ -67,7 +57,7 @@ public class Profile extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             ProfileModel view = new ProfileModel(icons[i], arrow, titles[i]);
             profileModelArrayList.add(view);
         }
@@ -95,6 +85,14 @@ public class Profile extends Fragment {
         goDesign.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 startActivity(new Intent(getContext(), Orders.class));
+            }
+        });
+
+        // Jump to My Setting page
+        ImageView goSetting = getView().findViewById(R.id.setting);
+        goSetting.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(getContext(), Setting.class));
             }
         });
     }

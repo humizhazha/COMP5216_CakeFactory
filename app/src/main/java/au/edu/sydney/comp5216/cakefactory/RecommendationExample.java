@@ -17,14 +17,6 @@ public class RecommendationExample extends AppCompatActivity {
 
         TextView toolbar = findViewById(R.id.toolbar);
         toolbar.setText("Recommendation ex1");
-
-        ImageView goBack = findViewById(R.id.backArrow);
-        goBack.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent i = new Intent(RecommendationExample.this, Recommendations.class);
-                startActivity(i);
-            }
-        });
     }
 
 }
