@@ -71,6 +71,7 @@
                             android:orientation="vertical">
 
                             <ImageView
+                                android:id ="@+id/chocolate"
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
                                 android:layout_gravity="center"
@@ -97,6 +98,7 @@
                             android:orientation="vertical">
 
                             <ImageView
+                                android:id ="@+id/cheese"
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
                                 android:layout_gravity="center"
@@ -130,6 +132,7 @@
                             android:orientation="vertical">
 
                             <ImageView
+                                android:id ="@+id/matcha"
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
                                 android:layout_gravity="center"
@@ -147,6 +150,7 @@
                                 android:textSize="@dimen/select_text_size" />
 
                             <ImageView
+                                android:id ="@+id/strawberry"
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
                                 android:layout_marginTop="20dp"
@@ -174,6 +178,7 @@
                             android:orientation="vertical">
 
                             <ImageView
+                                android:id ="@+id/vanilla"
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
                                 android:layout_gravity="center"

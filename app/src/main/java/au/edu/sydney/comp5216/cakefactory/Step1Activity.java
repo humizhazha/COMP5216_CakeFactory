@@ -15,7 +15,7 @@ public class Step1Activity extends AppCompatActivity {
     ImageView square;
     ImageView circle;
     ImageView heart;
-    int selected;
+    String selected;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,7 @@ public class Step1Activity extends AppCompatActivity {
                 square.setBackground(highlight);
                 circle.setBackground(null);
                 heart.setBackground(null);
+                selected = "square";
 
             }
         });
@@ -56,6 +57,7 @@ public class Step1Activity extends AppCompatActivity {
                 circle.setBackground(highlight);
                 heart.setBackground(null);
                 square.setBackground(null);
+                selected = "circle";
 
             }
         });
@@ -67,6 +69,7 @@ public class Step1Activity extends AppCompatActivity {
                 heart.setBackground(highlight);
                 square.setBackground(null);
                 circle.setBackground(null);
+                selected = "heart";
 
             }
         });
