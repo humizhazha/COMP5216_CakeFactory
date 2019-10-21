@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(it);
                     return true;
                 case R.id.navigation_me:
-                    mTextMessage.setText(R.string.title_notifications);
+                    it = new Intent(MainActivity.this, Profile.class);
+                    startActivity(it);
                     return true;
             }
             return false;

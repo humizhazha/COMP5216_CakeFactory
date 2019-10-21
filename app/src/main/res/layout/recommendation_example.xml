@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="11.7dp"
+        android:elevation="5dp">
+
+        <LinearLayout
+            android:id="@+id/favourite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/toolbar_up"/>
+
+            <ImageView
+                android:id="@+id/img1"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/recommendation_example_1"
+                android:layout_height="500dp" />
+
+            <ImageView
+                android:id="@+id/img2"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/recommendation_example_2"
+                android:layout_height="500dp" />
+
+            <ImageView
+                android:id="@+id/img3"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/recommendation_example_3"
+                android:layout_height="500dp" />
+
+            <ImageView
+                android:id="@+id/img4"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/recommendation_example_4"
+                android:layout_height="500dp" />
+
+            <ImageView
+                android:id="@+id/img5"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/recommendation_example_5" />
+
+            <ImageView
+                android:id="@+id/img6"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/recommendation_example_6"
+                android:layout_height="500dp" />
+
+            <ImageView
+                android:id="@+id/img7"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/recommendation_example_7"
+                android:layout_height="500dp" />
+
+            <ImageView
+                android:id="@+id/img8"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/recommendation_example_8"
+                android:layout_height="500dp" />
+
+            <ImageView
+                android:id="@+id/img9"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/recommendation_example_9"
+                android:layout_height="500dp" />
+
+            <ImageView
+                android:id="@+id/img10"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/recommendation_example_10"
+                android:layout_height="350dp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</ScrollView>
