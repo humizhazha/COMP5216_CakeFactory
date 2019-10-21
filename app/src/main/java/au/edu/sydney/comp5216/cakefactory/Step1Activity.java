@@ -12,10 +12,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Step1Activity extends AppCompatActivity {
 
-    ImageView square;
-    ImageView circle;
-    ImageView heart;
-    String selected;
+    private ImageView square;
+    private ImageView circle;
+    private ImageView heart;
+    private String selected;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,6 @@ public class Step1Activity extends AppCompatActivity {
         heart = (ImageView)findViewById(R.id.heart);
         circle = (ImageView)findViewById(R.id.circle);
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
         drawBorder();
 
 

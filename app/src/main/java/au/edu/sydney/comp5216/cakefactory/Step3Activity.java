@@ -11,12 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Step3Activity extends AppCompatActivity {
-    ImageView chocolate;
-    ImageView cheese;
-    ImageView matcha;
-    ImageView strawberry;
-    ImageView vanilla;
-    String selected;
+    private ImageView chocolate;
+    private ImageView cheese;
+    private ImageView matcha;
+    private ImageView strawberry;
+    private ImageView vanilla;
+    private String selected;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.step3);
@@ -24,11 +24,17 @@ public class Step3Activity extends AppCompatActivity {
                 R.anim.anim_slide_out_left);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
+        chocolate = (ImageView)findViewById(R.id.chocolate);
+        cheese = (ImageView)findViewById(R.id.cheese);
+        matcha = (ImageView)findViewById(R.id.matcha);
+        strawberry = (ImageView)findViewById(R.id.strawberry);
+        vanilla = (ImageView)findViewById(R.id.vanilla);
+
         drawBorder();
 
     }
     public void goNext(View view) {
-        Intent intent = new Intent(Step3Activity.this, DecorationActivity.class);
+        Intent intent = new Intent(Step3Activity.this, Step4Activity.class);
         startActivity(intent);
 
     }

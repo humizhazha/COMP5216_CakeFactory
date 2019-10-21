@@ -1,5 +1,6 @@
 package au.edu.sydney.comp5216.cakefactory;
 
+import android.graphics.drawable.Drawable;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,25 +12,39 @@ import android.view.MotionEvent;
 import android.content.Intent;
 import android.os.Bundle;
 
-public class DecorationActivity extends AppCompatActivity implements View.OnTouchListener {
+public class Step4Activity extends AppCompatActivity implements View.OnTouchListener {
     int windowwidth; // Actually the width of the RelativeLayout.
     int windowheight; // Actually the height of the RelativeLayout.
     private ImageView mImageView;
     private ViewGroup mRrootLayout;
     private int _xDelta;
     private int _yDelta;
+    private ImageView cherry;
+    private ImageView strawberry;
+    private ImageView cookie;
+    private ImageView icecream;
+    private ImageView candle;
+    private ImageView bean;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.step4);
+        this.overridePendingTransition(R.anim.anim_slide_in_left,
+                R.anim.anim_slide_out_left);
         // We are interested when the image view leaves its parent RelativeLayout
         // container and not the screen, so the following code is not needed.
-//        DisplayMetrics displaymetrics = new DisplayMetrics();
-//        this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-//        windowwidth = displaymetrics.widthPixels;
-//        windowheight = displaymetrics.heightPixels;
+
         mRrootLayout = (ViewGroup) findViewById(R.id.root);
         mImageView = (ImageView) mRrootLayout.findViewById(R.id.im_move_zoom_rotate);
+
+        cherry = (ImageView)findViewById(R.id.cherry);
+        cookie = (ImageView)findViewById(R.id.cookies);
+        icecream = (ImageView)findViewById(R.id.icecream);
+        strawberry = (ImageView)findViewById(R.id.strawberry);
+        bean = (ImageView)findViewById(R.id.beans);
+        candle = (ImageView)findViewById(R.id.candle);
+        drawBorder();
 
         // These these following 2 lines that address layoutparams set the width
         // and height of the ImageView to 150 pixels and, as a side effect, clear any
@@ -37,9 +52,6 @@ public class DecorationActivity extends AppCompatActivity implements View.OnTouc
         // We will rely on the XML to define the size and avoid anything that will
         // interfere, so we will comment these lines out. (You can test out how a layout parameter
         // can interfere by setting android:layout_centerInParent="true" in the ImageView.
-//        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(150, 150);
-//        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(150, 150);
-//        mImageView.setLayoutParams(layoutParams);
         mImageView.setOnTouchListener(this);
 
         // Capture the width of the RelativeLayout once it is laid out.
@@ -116,6 +128,82 @@ public class DecorationActivity extends AppCompatActivity implements View.OnTouc
                 (view.getRight() - windowwidth) > viewPctWidth ||
                 (-view.getTop() >= viewPctHeight) ||
                 (view.getBottom() - windowheight) > viewPctHeight);
+    }
+
+    public void goNext(View view) {
+        Intent intent = new Intent(Step4Activity.this, Step4Activity.class);
+        startActivity(intent);
+
+    }
+    public void goBack(View view) {
+        Intent intent = new Intent(Step4Activity.this, Step3Activity.class);
+        startActivity(intent);
+
+    }
+    public void emptyBorder(){
+        cherry.setBackground(null);
+        cookie.setBackground(null);
+        icecream.setBackground(null);
+        strawberry.setBackground(null);
+        bean.setBackground(null);
+        candle.setBackground(null);
+    }
+
+    public void drawBorder(){
+        cherry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Drawable highlight = getResources().getDrawable(R.drawable.ic_border);
+                emptyBorder();
+                cherry.setBackground(highlight);
+            }
+        });
+
+        cookie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Drawable highlight = getResources().getDrawable(R.drawable.ic_border);
+                emptyBorder();
+                cookie.setBackground(highlight);
+            }
+        });
+
+        icecream.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Drawable highlight = getResources().getDrawable(R.drawable.ic_border);
+                emptyBorder();
+                icecream.setBackground(highlight);
+            }
+        });
+
+        strawberry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Drawable highlight = getResources().getDrawable( R.drawable.ic_border);
+                emptyBorder();
+                strawberry.setBackground(highlight);
+            }
+        });
+
+        candle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Drawable highlight = getResources().getDrawable( R.drawable.ic_border);
+                emptyBorder();
+                candle.setBackground(highlight);
+            }
+        });
+
+        bean.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Drawable highlight = getResources().getDrawable( R.drawable.ic_border);
+                emptyBorder();
+                bean.setBackground(highlight);
+            }
+        });
+
     }
 
 }

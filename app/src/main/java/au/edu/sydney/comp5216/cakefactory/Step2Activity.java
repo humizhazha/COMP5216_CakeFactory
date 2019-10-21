@@ -11,13 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Step2Activity extends AppCompatActivity {
-    ImageView wedding;
-    ImageView birthday;
-    ImageView cupcake;
-    ImageView pie;
-    ImageView roll;
-    ImageView slice;
-    String selected;
+    private ImageView wedding;
+    private ImageView birthday;
+    private ImageView cupcake;
+    private ImageView pie;
+    private ImageView roll;
+    private ImageView slice;
+    private String selected;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.step2);
@@ -30,7 +30,6 @@ public class Step2Activity extends AppCompatActivity {
         roll = (ImageView)findViewById(R.id.roll);
         slice = (ImageView)findViewById(R.id.slice);
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
         drawBorder();
 
     }
