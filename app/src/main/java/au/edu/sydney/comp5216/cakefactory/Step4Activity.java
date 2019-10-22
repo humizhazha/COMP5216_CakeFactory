@@ -6,6 +6,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.view.ViewGroup;
 import android.view.MotionEvent;
@@ -19,12 +20,15 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
     private ViewGroup mRrootLayout;
     private int _xDelta;
     private int _yDelta;
-    private ImageView cherry;
+    private ImageView marshmallows;
     private ImageView strawberry;
     private ImageView cookie;
-    private ImageView icecream;
+    private ImageView Sprinkling;
     private ImageView candle;
     private ImageView bean;
+    private Drawable currentDeco;
+    private int position_x;
+    private int position_y;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +42,14 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
         mRrootLayout = (ViewGroup) findViewById(R.id.root);
         mImageView = (ImageView) mRrootLayout.findViewById(R.id.im_move_zoom_rotate);
 
-        cherry = (ImageView)findViewById(R.id.cherry);
+        marshmallows = (ImageView)findViewById(R.id.marshmallows);
         cookie = (ImageView)findViewById(R.id.cookies);
-        icecream = (ImageView)findViewById(R.id.icecream);
+        Sprinkling = (ImageView)findViewById(R.id.sprinkling);
         strawberry = (ImageView)findViewById(R.id.strawberry);
         bean = (ImageView)findViewById(R.id.beans);
         candle = (ImageView)findViewById(R.id.candle);
-        drawBorder();
+        startDecorationListener();
+        mImageView.setImageDrawable(null);
 
         // These these following 2 lines that address layoutparams set the width
         // and height of the ImageView to 150 pixels and, as a side effect, clear any
@@ -70,6 +75,8 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
     public boolean onTouch(View view, MotionEvent event) {
         final int X = (int) event.getRawX();
         final int Y = (int) event.getRawY();
+        position_x = X;
+        position_y = Y;
 
         // Check if the image view is out of the parent view and report it if it is.
         // Only report once the image goes out and don't stack toasts.
@@ -141,21 +148,25 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
 
     }
     public void emptyBorder(){
-        cherry.setBackground(null);
+        marshmallows.setBackground(null);
         cookie.setBackground(null);
-        icecream.setBackground(null);
+        Sprinkling.setBackground(null);
         strawberry.setBackground(null);
         bean.setBackground(null);
         candle.setBackground(null);
     }
 
-    public void drawBorder(){
-        cherry.setOnClickListener(new View.OnClickListener() {
+    public void startDecorationListener(){
+        marshmallows.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Drawable highlight = getResources().getDrawable(R.drawable.ic_border);
+                currentDeco = getResources().getDrawable(R.drawable.deco_marshmallows);
+                ImageView temp = addDecoration(mImageView,v);
+                mRrootLayout.addView(temp);
+                mImageView.setImageDrawable(currentDeco);
                 emptyBorder();
-                cherry.setBackground(highlight);
+                marshmallows.setBackground(highlight);
             }
         });
 
@@ -163,17 +174,25 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
             @Override
             public void onClick(View v) {
                 Drawable highlight = getResources().getDrawable(R.drawable.ic_border);
+                currentDeco = getResources().getDrawable(R.drawable.deco_cookie);
+                ImageView temp = addDecoration(mImageView,v);
+                mRrootLayout.addView(temp);
+                mImageView.setImageDrawable(currentDeco);
                 emptyBorder();
                 cookie.setBackground(highlight);
             }
         });
 
-        icecream.setOnClickListener(new View.OnClickListener() {
+        Sprinkling.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Drawable highlight = getResources().getDrawable(R.drawable.ic_border);
+                currentDeco = getResources().getDrawable(R.drawable.deco_sprinkles);
+                ImageView temp = addDecoration(mImageView,v);
+                mRrootLayout.addView(temp);
+                mImageView.setImageDrawable(currentDeco);
                 emptyBorder();
-                icecream.setBackground(highlight);
+                Sprinkling.setBackground(highlight);
             }
         });
 
@@ -181,6 +200,10 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
             @Override
             public void onClick(View v) {
                 Drawable highlight = getResources().getDrawable( R.drawable.ic_border);
+                currentDeco = getResources().getDrawable(R.drawable.deco_strawberry);
+                ImageView temp = addDecoration(mImageView,v);
+                mRrootLayout.addView(temp);
+                mImageView.setImageDrawable(currentDeco);
                 emptyBorder();
                 strawberry.setBackground(highlight);
             }
@@ -190,6 +213,10 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
             @Override
             public void onClick(View v) {
                 Drawable highlight = getResources().getDrawable( R.drawable.ic_border);
+                currentDeco = getResources().getDrawable(R.drawable.deco_candle);
+                ImageView temp = addDecoration(mImageView,v);
+                mRrootLayout.addView(temp);
+                mImageView.setImageDrawable(currentDeco);
                 emptyBorder();
                 candle.setBackground(highlight);
             }
@@ -199,10 +226,29 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
             @Override
             public void onClick(View v) {
                 Drawable highlight = getResources().getDrawable( R.drawable.ic_border);
+                currentDeco = getResources().getDrawable(R.drawable.deco_beans);
+                ImageView temp = addDecoration(mImageView,v);
+                //temp.setPadding(mImageView.,mImageView.getTop(),mImageView.getRight(),mImageView.getBottom());
+                mRrootLayout.addView(temp);
+                mImageView.setImageDrawable(currentDeco);
                 emptyBorder();
                 bean.setBackground(highlight);
             }
         });
+
+    }
+
+    private ImageView addDecoration( ImageView mImageView, View view){
+        ImageView temp = new ImageView(Step4Activity.this);
+        int w = (int) (50 * Step4Activity.this.getResources().getDisplayMetrics().density);
+        int h = (int) (50 * Step4Activity.this.getResources().getDisplayMetrics().density);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(w, h);
+        temp.setLayoutParams(layoutParams);
+        temp.setImageDrawable(mImageView.getDrawable());
+        temp.setX(position_x-w);
+        temp.setY(position_y-h);
+
+        return temp;
 
     }
 

@@ -48,9 +48,8 @@
 
             <ImageView
                 android:id="@+id/im_move_zoom_rotate"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:background="@color/colorWhite"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@drawable/cherry" />
         </RelativeLayout>
 
@@ -76,12 +75,12 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id ="@+id/cherry"
+                        android:id ="@+id/marshmallows"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/cherry" />
+                        android:src="@drawable/ic_marshmallows" />
 
 
                     <custom_font.MyTextView
@@ -90,7 +89,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="3dp"
                         android:gravity="center"
-                        android:text="Cherry"
+                        android:text="Marshmallow"
                         android:textColor="@color/colorTex"
                         android:textSize="@dimen/select_text_size" />
 
@@ -214,11 +213,11 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id ="@+id/icecream"
+                        android:id ="@+id/sprinkling"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_cream" />
+                        android:src="@drawable/ic_sprinkling" />
 
 
                     <custom_font.MyTextView
@@ -227,7 +226,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="3dp"
                         android:gravity="center"
-                        android:text="Ice Cream"
+                        android:text="Sprinklings"
                         android:textColor="@color/colorTex"
                         android:textSize="@dimen/select_text_size" />
 

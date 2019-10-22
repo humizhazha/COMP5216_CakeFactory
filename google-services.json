@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "484536951747",
+    "firebase_url": "https://cake-factory-59fdc.firebaseio.com",
+    "project_id": "cake-factory-59fdc",
+    "storage_bucket": "cake-factory-59fdc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484536951747:android:a6ec393c73a4da682c5376",
+        "android_client_info": {
+          "package_name": "au.edu.sydney.comp5216.cakefactory"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "484536951747-aj2m6f9n4j0ejn9n4lgkhrf8h8qd4u50.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1c0Ech4o8boBv8oOkprxXGMK-2Psxnro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "484536951747-aj2m6f9n4j0ejn9n4lgkhrf8h8qd4u50.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

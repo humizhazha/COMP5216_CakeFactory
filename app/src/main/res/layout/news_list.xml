@@ -105,26 +105,13 @@
                         android:textSize="13dp" />
 
 
-                    <custom_font.MyTextView
-                        android:id="@+id/intrest"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="13dp"
-                        android:maxLines="1"
-                        android:text="You've shown interest in iPhone"
-                        android:textColor="@color/listsub2"
-                        android:textSize="12dp" />
-
-
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2.2"
-                    android:orientation="vertical"
-
-                    >
+                    android:orientation="vertical">
 
                     <ImageView
 

@@ -24,7 +24,7 @@ public class Favourites extends AppCompatActivity {
 
     private Integer[] imgs = {
             R.drawable.img1,
-            R.drawable.img12,
+            R.drawable.img1,
             R.drawable.img1};
     private String[] titles = {
             "Wild Honey at Scotts Square",

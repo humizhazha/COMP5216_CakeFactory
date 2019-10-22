@@ -9,7 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.AdapterView;
 
 import java.util.ArrayList;
 
@@ -81,7 +83,30 @@ public class MainActivity extends AppCompatActivity {
         };
 
         listview.setAdapter(baseAdapter);
+        setupListViewListener();
     }
-    public void 
+    /**
+     * Called when clicked an photo in GridView to edit
+     */
+    private void setupListViewListener() {
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                //Get the photo path from system
+               // String photoPath = imageAdapter.getItem(position);
+                Intent intent = new Intent(MainActivity.this, ViewArticleAcitivity.class);
+                if (intent != null) {
+                    startActivity(intent);
+                }
+
+//                if (intent != null) {
+//                    intent.putExtra("path", photoPath);
+//                    intent.putExtra("position", position);
+//
+//                }
+            }
+        });
+    }
 
 }

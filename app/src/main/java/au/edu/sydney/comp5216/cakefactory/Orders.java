@@ -24,8 +24,8 @@ public class Orders extends AppCompatActivity {
 
     private Integer[] imgs  = {
             R.drawable.img1,
-            R.drawable.img12,
-            R.drawable.img12,
+            R.drawable.img1,
+            R.drawable.img1,
             R.drawable.img1};
     private String[] titles  = {
             "Cocobolo Poolside Bar + Grill",

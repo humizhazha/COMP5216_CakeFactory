@@ -71,14 +71,12 @@ public class ListBaseAdapter extends BaseAdapter {
             viewHolder.time = (TextView) convertView.findViewById(R.id.time);
             viewHolder.news = (TextView) convertView.findViewById(R.id.news);
             viewHolder.newssub = (TextView) convertView.findViewById(R.id.newssub);
-            viewHolder.intrest = (TextView) convertView.findViewById(R.id.intrest);
 
 
             viewHolder.newsname.setTypeface(fonts1);
             viewHolder.time.setTypeface(fonts1);
             viewHolder.news.setTypeface(fonts2);
             viewHolder.newssub.setTypeface(fonts1);
-            viewHolder.intrest.setTypeface(fonts1);
 
             convertView.setTag(viewHolder);
 
@@ -98,7 +96,6 @@ public class ListBaseAdapter extends BaseAdapter {
         viewHolder.time.setText(bean.getTime());
         viewHolder.news.setText(bean.getNews());
         viewHolder.newssub.setText(bean.getNewssub());
-        viewHolder.intrest.setText(bean.getIntrest());
 
 
         return convertView;
@@ -113,7 +110,6 @@ public class ListBaseAdapter extends BaseAdapter {
         TextView time;
         TextView news;
         TextView newssub;
-        TextView intrest;
 
 
     }

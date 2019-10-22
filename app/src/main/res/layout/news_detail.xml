@@ -46,23 +46,23 @@
                         android:layout_height="wrap_content"
                         android:text="John Doe"
                         android:textColor="#a0a0a0"
-                        android:textSize="10sp" />
+                        android:textSize="14sp" />
 
 
-                    <custom_font.MyTextView_Roboto_Light
+                    <custom_font.MyTextView_Roboto_Bold
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Digital Marketing 101"
                         android:textColor="@color/colorTex"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
 
                     <custom_font.MyTextView_Roboto_Regular
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:textColor="#a0a0a0"
-                        android:textSize="10sp"
+                        android:textSize="14sp"
                         android:text="13 May 2017"/>
 
                 </LinearLayout>
