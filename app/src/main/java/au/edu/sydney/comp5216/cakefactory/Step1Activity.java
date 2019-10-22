@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,23 +18,22 @@ public class Step1Activity extends AppCompatActivity {
     private ImageView heart;
     private String selected;
 
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.step1);
+
         this.overridePendingTransition(R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left);
+
         square = (ImageView)findViewById(R.id.square);
         heart = (ImageView)findViewById(R.id.heart);
         circle = (ImageView)findViewById(R.id.circle);
 
         drawBorder();
-
-
     }
+
     public void goNext(View view) {
-        Intent intent = new Intent(Step1Activity.this, Step2Activity.class);
-        startActivity(intent);
+        startActivity(new Intent(Step1Activity.this, Step2Activity.class));
     }
 
     public void drawBorder(){

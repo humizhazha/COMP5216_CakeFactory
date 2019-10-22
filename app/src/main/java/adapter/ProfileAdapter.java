@@ -14,9 +14,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import au.edu.sydney.comp5216.cakefactory.EditProfile;
-import au.edu.sydney.comp5216.cakefactory.Favourites;
-import au.edu.sydney.comp5216.cakefactory.Profile;
 import au.edu.sydney.comp5216.cakefactory.R;
 import au.edu.sydney.comp5216.cakefactory.Recommendations;
 import model.ProfileModel;
@@ -51,10 +48,10 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
                     Intent i = new Intent(context, Recommendations.class);
                     context.startActivity(i);}
                 if(position == 1){
-                    Intent i = new Intent(context, EditProfile.class);
+                    Intent i = new Intent(context, Recommendations.class);
                     context.startActivity(i);}
                 if(position == 2){
-                    Intent i = new Intent(context, EditProfile.class);
+                    Intent i = new Intent(context, Recommendations.class);
                     context.startActivity(i);}
             }
         });

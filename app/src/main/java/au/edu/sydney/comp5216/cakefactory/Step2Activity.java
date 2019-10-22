@@ -18,6 +18,7 @@ public class Step2Activity extends AppCompatActivity {
     private ImageView roll;
     private ImageView slice;
     private String selected;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.step2);

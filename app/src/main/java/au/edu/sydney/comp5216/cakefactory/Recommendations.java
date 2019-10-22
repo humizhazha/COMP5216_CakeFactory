@@ -48,13 +48,5 @@ public class Recommendations extends AppCompatActivity {
         recommendationAdapter =
                 new RecommendationAdapter(Recommendations.this, recommendationModelArrayList);
         recyclerView.setAdapter(recommendationAdapter);
-
-        ImageView goBack = findViewById(R.id.backArrow);
-        goBack.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent i = new Intent(Recommendations.this, Profile.class);
-                startActivity(i);
-            }
-        });
     }
 }

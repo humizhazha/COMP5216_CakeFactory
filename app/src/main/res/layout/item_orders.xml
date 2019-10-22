@@ -36,6 +36,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
+<<<<<<< HEAD
                     <!--<com.makeramen.roundedimageview.RoundedImageView-->
                         <!--android:id="@+id/img"-->
                         <!--android:layout_width="60dp"-->
@@ -43,6 +44,15 @@
                         <!--android:src="@drawable/img12"-->
                         <!--android:scaleType="fitXY"-->
                         <!--app:riv_corner_radius="4dip" />-->
+=======
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/img"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/img1"
+                        android:scaleType="fitXY"
+                        app:riv_corner_radius="4dip" />
+>>>>>>> d1746ab841f39030365168b98842dbdbffe2f3c0
 
                     <LinearLayout
                         android:layout_width="match_parent"

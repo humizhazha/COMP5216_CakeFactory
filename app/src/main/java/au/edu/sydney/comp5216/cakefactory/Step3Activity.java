@@ -17,13 +17,13 @@ public class Step3Activity extends AppCompatActivity {
     private ImageView strawberry;
     private ImageView vanilla;
     private String selected;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.step3);
         this.overridePendingTransition(R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left);
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
         chocolate = (ImageView)findViewById(R.id.chocolate);
         cheese = (ImageView)findViewById(R.id.cheese);
         matcha = (ImageView)findViewById(R.id.matcha);

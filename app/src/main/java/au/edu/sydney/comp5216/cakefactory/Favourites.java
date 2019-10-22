@@ -1,9 +1,6 @@
 package au.edu.sydney.comp5216.cakefactory;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -60,13 +57,5 @@ public class Favourites extends AppCompatActivity {
 
         favouriteAdapter = new FavouriteAdapter(Favourites.this, favouriteModelArrayList);
         recyclerView.setAdapter(favouriteAdapter);
-
-        ImageView goBack = findViewById(R.id.backArrow);
-        goBack.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent i = new Intent(Favourites.this, Profile.class);
-                startActivity(i);
-            }
-        });
     }
 }
