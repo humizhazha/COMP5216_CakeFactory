@@ -73,15 +73,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/cover"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2.5dp"
-                    android:layout_marginLeft="150dp"
-                    android:layout_marginRight="150dp"
-                    android:background="#db4437" />
 
 
                 <custom_font.MyTextView
@@ -89,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:gravity="center"
-                    android:text="Stories to read"
+                    android:text="Life is just a piece a cake !\n\n                            -- Vivi Hu"
                     android:textColor="#757575"
                     android:textSize="16dp" />
 
