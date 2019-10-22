@@ -92,7 +92,7 @@ public class Profile extends Fragment {
         ImageView goSetting = getView().findViewById(R.id.setting);
         goSetting.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                startActivity(new Intent(getContext(), Orders.class));
+                startActivity(new Intent(getContext(), Setting.class));
             }
         });
     }

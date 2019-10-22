@@ -39,6 +39,9 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
         TextView toolbar = findViewById(R.id.toolbar);
         toolbar.setText("Design");
 
+        ImageView goBack = findViewById(R.id.backArrow);
+        goBack.setVisibility(View.INVISIBLE);
+
         this.overridePendingTransition(R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left);
         // We are interested when the image view leaves its parent RelativeLayout
