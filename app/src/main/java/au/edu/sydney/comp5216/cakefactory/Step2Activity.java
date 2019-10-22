@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,7 +37,12 @@ public class Step2Activity extends AppCompatActivity {
     }
     public void goNext(View view) {
         Intent intent = new Intent(Step2Activity.this, Step3Activity.class);
-        startActivity(intent);
+        if(selected==null){
+            Toast.makeText(Step2Activity.this, "Please select your cake type!", Toast.LENGTH_SHORT).show();
+        }else{
+            startActivity(intent);
+        }
+
 
     }
     public void goBack(View view) {

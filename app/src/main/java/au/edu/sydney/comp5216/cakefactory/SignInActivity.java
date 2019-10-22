@@ -28,7 +28,6 @@ public class SignInActivity extends AppCompatActivity {
     String email;
     String password;
     ImageView signIn;
-    private FirebaseFirestore mFirestore;
     private FirebaseAuth mAuth;
     private static final String TAG = SignInActivity.class.getSimpleName();
 
@@ -40,7 +39,6 @@ public class SignInActivity extends AppCompatActivity {
 
         signIn = (ImageView) findViewById(R.id.signIn);
         FirebaseFirestore.setLoggingEnabled(true);
-        initFirestore();
         mAuth = FirebaseAuth.getInstance();
         setUpListener();
 
@@ -83,13 +81,7 @@ public class SignInActivity extends AppCompatActivity {
 
     }
 
-    private void initFirestore() {
-        mFirestore = FirebaseFirestore.getInstance();
-    }
 
-//    private boolean shouldStartSignIn() {
-//        return (!mViewModel.getIsSigningIn() && FirebaseAuth.getInstance().getCurrentUser() == null);
-//    }
 
     private void startSignIn(String email, String password) {
 
@@ -99,32 +91,19 @@ public class SignInActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
+                            Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             Intent it = new Intent(SignInActivity.this, MainActivity.class);
                             startActivity(it);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(SignInActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
 
                         }
-
-                        // ...
                     }
                 });
     }
-
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//
-//        // Start sign in if necessary
-//        if (shouldStartSignIn()) {
-//            startSignIn();
-//            return;
-//        }
-//    }
 
 }

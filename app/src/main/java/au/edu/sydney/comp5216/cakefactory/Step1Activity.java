@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,7 +34,11 @@ public class Step1Activity extends AppCompatActivity {
     }
 
     public void goNext(View view) {
-        startActivity(new Intent(Step1Activity.this, Step2Activity.class));
+        if(selected==null){
+            Toast.makeText(Step1Activity.this, "Please select your cake shape!", Toast.LENGTH_SHORT).show();
+        }else{
+            startActivity(new Intent(Step1Activity.this, Step2Activity.class));
+        }
     }
 
     public void drawBorder(){
