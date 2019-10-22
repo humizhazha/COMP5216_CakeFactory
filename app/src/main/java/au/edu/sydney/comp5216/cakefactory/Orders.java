@@ -56,6 +56,18 @@ public class Orders extends AppCompatActivity {
         TextView toolbar = findViewById(R.id.toolbar);
         toolbar.setText("Orders");
 
+        ImageView goBack = findViewById(R.id.backArrow);
+        goBack.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(Orders.this, MainActivity.class);
+                intent.putExtra("Profile",true);
+                overridePendingTransition(0, 0);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                finish();
+                startActivity(intent);
+            }
+        });
+
         recyclerView = findViewById(R.id.recycler);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Orders.this);
         recyclerView.setLayoutManager(layoutManager);
@@ -68,18 +80,6 @@ public class Orders extends AppCompatActivity {
 
         orderAdapter = new OrderAdapter(Orders.this, orderModelArrayList);
         recyclerView.setAdapter(orderAdapter);
-
-//        ImageView goBack = findViewById(R.id.backArrow);
-//        goBack.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Orders.this, MainActivity.class);
-//                intent.putExtra("Profile",true);
-//                overridePendingTransition(0, 0);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-//                finish();
-//                startActivity(intent);
-//            }
-//        });
     }
 
 }

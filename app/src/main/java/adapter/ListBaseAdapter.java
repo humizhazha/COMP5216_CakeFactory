@@ -1,4 +1,4 @@
-package au.edu.sydney.comp5216.cakefactory;
+package adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import au.edu.sydney.comp5216.cakefactory.R;
+import model.Article;
 
 /**
  * Created by apple on 01/04/16.

@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
 
+import adapter.ListBaseAdapter;
 import custom_font.ExpandableHeightListView;
+import model.Article;
 
 public class Discovery extends Fragment {
 
@@ -30,6 +32,9 @@ public class Discovery extends Fragment {
     private String[] NEWSSUB = {"Why even a President Trump couldn’t make Apple manufacture iPhone in the state.","Why even a President Trump couldn’t make Apple manufacture iPhone in the state.",
             "Why even a President Trump couldn’t make Apple manufacture iPhone in the state."};
     private String[] INTREST = {"You've shown interest in iPhone","You've shown interest in iPhone","You've shown interest in iPhone"};
+
+    public Discovery() {
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,29 +58,14 @@ public class Discovery extends Fragment {
             Article bean = new Article(IMAGE1[i], IMAGE2[i], IMAGE3[i], NEWSNAME[i], TITLE[i], NEWS[i], NEWSSUB[i], INTREST[i]);
             Bean.add(bean);
         }
+
         baseAdapter = new ListBaseAdapter(getContext(), Bean);
         listview.setAdapter(baseAdapter);
-        setupListViewListener();
-    }
-
-    private void setupListViewListener() {
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                //Get the photo path from system
-                // String photoPath = imageAdapter.getItem(position);
                 startActivity(new Intent(getActivity(), ViewArticleAcitivity.class));
-//                Intent intent = new Intent(Discovery.this, ViewArticleAcitivity.class);
-//                if (intent != null) {
-//                    startActivity(intent);
-//                }
-
-//                if (intent != null) {
-//                    intent.putExtra("path", photoPath);
-//                    intent.putExtra("position", position);
-//
-//                }
             }
         });
     }

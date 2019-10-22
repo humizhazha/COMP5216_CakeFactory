@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -34,6 +35,10 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.step4);
+
+        TextView toolbar = findViewById(R.id.toolbar);
+        toolbar.setText("Design");
+
         this.overridePendingTransition(R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left);
         // We are interested when the image view leaves its parent RelativeLayout

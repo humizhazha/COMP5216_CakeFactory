@@ -6,12 +6,19 @@
     android:background="#f15421"
     android:orientation="horizontal">
 
+    <ImageView
+        android:id="@+id/backArrow"
+        android:layout_width="25dp"
+        android:layout_height="20dp"
+        android:src="@drawable/barrow"
+        android:tint="@android:color/white"/>
+
     <TextView
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Toolbar Title"
-        android:textAlignment="center"
+        android:layout_marginLeft="125dp"
         android:textColor="@android:color/white" />
 
     <!--<ImageView-->

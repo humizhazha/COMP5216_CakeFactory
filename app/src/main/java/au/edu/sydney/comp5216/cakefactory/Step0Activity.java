@@ -19,6 +19,9 @@ import custom_font.ExpandableHeightListView;
 
 public class Step0Activity extends Fragment {
 
+    public Step0Activity() {
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

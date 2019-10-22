@@ -1,4 +1,4 @@
-package au.edu.sydney.comp5216.cakefactory;
+package model;
 
 public class Article {
     private int newsimage1;
