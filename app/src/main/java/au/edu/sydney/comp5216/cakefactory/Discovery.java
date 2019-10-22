@@ -1,9 +1,11 @@
 package au.edu.sydney.comp5216.cakefactory;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import androidx.fragment.app.Fragment;
 
@@ -53,5 +55,28 @@ public class Discovery extends Fragment {
         }
         baseAdapter = new ListBaseAdapter(getContext(), Bean);
         listview.setAdapter(baseAdapter);
+        setupListViewListener();
+    }
+
+    private void setupListViewListener() {
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                //Get the photo path from system
+                // String photoPath = imageAdapter.getItem(position);
+                startActivity(new Intent(getActivity(), ViewArticleAcitivity.class));
+//                Intent intent = new Intent(Discovery.this, ViewArticleAcitivity.class);
+//                if (intent != null) {
+//                    startActivity(intent);
+//                }
+
+//                if (intent != null) {
+//                    intent.putExtra("path", photoPath);
+//                    intent.putExtra("position", position);
+//
+//                }
+            }
+        });
     }
 }
