@@ -40,7 +40,6 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/bg" />
 
-
                 <androidx.cardview.widget.CardView
                     android:id="@+id/linear"
                     android:layout_width="match_parent"
@@ -67,7 +66,6 @@
                         android:textSize="14dp" />
 
                 </androidx.cardview.widget.CardView>
-
 
             </FrameLayout>
 

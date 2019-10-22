@@ -1,15 +1,15 @@
-package au.edu.sydney.comp5216.cakefactory;
+package model;
 
 public class Article {
     private int newsimage1;
-    private int newsimage2;
+    private String newsimage2;
     private String newsname;
     private String time;
     private String news;
     private String newssub;
 
 
-    public Article(int newsimage1, int newsimage2, String newsname, String time, String news, String newssub) {
+    public Article(int newsimage1, String newsimage2, String newsname, String time, String news, String newssub) {
 
         this.newsimage1 = newsimage1;
         this.newsimage2 = newsimage2;
@@ -28,11 +28,11 @@ public class Article {
         this.newsimage1 = newsimage1;
     }
 
-    public int getNewsimage2() {
+    public String getNewsimage2() {
         return newsimage2;
     }
 
-    public void setNewsimage2(int newsimage2) {
+    public void setNewsimage2(String newsimage2) {
         this.newsimage2 = newsimage2;
     }
 

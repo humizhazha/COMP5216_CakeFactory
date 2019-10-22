@@ -1,4 +1,4 @@
-package au.edu.sydney.comp5216.cakefactory;
+package adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,8 +9,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+
+import au.edu.sydney.comp5216.cakefactory.R;
+import model.Article;
 
 /**
  * Created by apple on 01/04/16.
@@ -86,9 +90,11 @@ public class ListBaseAdapter extends BaseAdapter {
 
 
         Article bean = (Article) getItem(position);
+        Glide.with(viewHolder.newsimage2.getContext())
+                .load(bean.getNewsimage2())
+                .into(viewHolder.newsimage2);
 
         viewHolder.newsimage1.setImageResource(bean.getNewsimage1());
-        viewHolder.newsimage2.setImageResource(bean.getNewsimage2());
         viewHolder.newsname.setText(bean.getNewsname());
         viewHolder.time.setText(bean.getTime());
         viewHolder.news.setText(bean.getNews());

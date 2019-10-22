@@ -36,13 +36,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <!--<com.makeramen.roundedimageview.RoundedImageView-->
-                        <!--android:id="@+id/img"-->
-                        <!--android:layout_width="60dp"-->
-                        <!--android:layout_height="60dp"-->
-                        <!--android:src="@drawable/img12"-->
-                        <!--android:scaleType="fitXY"-->
-                        <!--app:riv_corner_radius="4dip" />-->
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/img"
                         android:layout_width="60dp"
@@ -57,13 +50,13 @@
                         android:orientation="vertical"
                         android:layout_marginLeft="12dp">
 
-                        <!--<TextView-->
-                            <!--android:id="@+id/title"-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:textSize="14.4sp"-->
-                            <!--android:textColor="#262628"-->
-                            <!--android:text="Cocobolo Poolside Bar + Grill"/>-->
+                        <TextView
+                            android:id="@+id/title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="14.4sp"
+                            android:textColor="#262628"
+                            android:text="Cocobolo Poolside Bar + Grill"/>
 
                         <TextView
                             android:id="@+id/size"

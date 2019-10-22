@@ -80,20 +80,20 @@ public class Profile extends Fragment {
             }
         });
 
-//        // Jump to My Designs page
-//        LinearLayout goDesign = getView().findViewById(R.id.design);
-//        goDesign.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View v){
-//                startActivity(new Intent(getContext(), Orders.class));
-//            }
-//        });
-//
-//        // Jump to My Setting page
-//        ImageView goSetting = getView().findViewById(R.id.setting);
-//        goSetting.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View v){
-//                startActivity(new Intent(getContext(), Setting.class));
-//            }
-//        });
+        // Jump to My Designs page
+        LinearLayout goDesign = getView().findViewById(R.id.design);
+        goDesign.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(getContext(), Orders.class));
+            }
+        });
+
+        // Jump to My Setting page
+        ImageView goSetting = getView().findViewById(R.id.setting);
+        goSetting.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(getContext(), Setting.class));
+            }
+        });
     }
 }
