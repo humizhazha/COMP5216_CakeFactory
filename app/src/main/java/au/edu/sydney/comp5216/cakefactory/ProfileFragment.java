@@ -114,8 +114,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
         mFirestore = FirebaseFirestore.getInstance();
 
         // Get reference to the logined user
-        mUserRef = mFirestore.collection("users")
-                .document(userId);
+        mUserRef = mFirestore.collection("users").document(userId);
 
         initRecyclerView();
     }
