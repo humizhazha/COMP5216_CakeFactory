@@ -38,6 +38,10 @@ dependencies {
     implementation 'com.roughike:bottom-bar:2.3.1'
     implementation 'com.android.support:cardview-v7:+'
 
+    //Firebase
+//    implementation 'com.google.firebase:firebase-core:17.0.0'
+    implementation 'com.google.firebase:firebase-analytics:17.2.0'
+
     // Firestore
     implementation 'com.google.firebase:firebase-firestore:20.2.0'
     implementation 'com.google.firebase:firebase-database:19.2.0'
@@ -50,14 +54,17 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-auth:4.3.2'
 
     // Support Libs
-    // implementation 'com.google.firebase:firebase-core:17.0.0'
-    implementation 'com.google.firebase:firebase-analytics:17.0.1'
+    implementation 'androidx.browser:browser:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
 
     // Android architecture components
     implementation 'androidx.lifecycle:lifecycle-runtime:2.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.0.0'
-    implementation 'com.firebaseui:firebase-ui-auth:4.3.2'
-    implementation 'com.github.bumptech.glide:glide:3.7.0'
+
+    // Third-party libraries
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
 }
 apply plugin: 'com.google.gms.google-services'

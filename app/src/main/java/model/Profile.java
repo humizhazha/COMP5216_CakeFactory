@@ -1,14 +1,15 @@
 package model;
 
 /**
- * Model for profile function bar
+ * Profile POJO.
  */
-public class ProfileModel {
+public class Profile {
+
     private Integer icon;
     private Integer arrow;
     private String title;
 
-    public ProfileModel(Integer icon, Integer arrow, String title) {
+    public Profile(Integer icon, Integer arrow, String title) {
         this.icon = icon;
         this.arrow = arrow;
         this.title = title;

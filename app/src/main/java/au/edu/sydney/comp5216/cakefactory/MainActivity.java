@@ -1,6 +1,6 @@
 package au.edu.sydney.comp5216.cakefactory;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String user_uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,10 +23,13 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        loadFragment(new Profile());
         Bundle extras = getIntent().getExtras();
+
+//        SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
+//        user_uid = preferences.getString("user_id", "0");
+
         if(extras != null && extras.containsKey("Profile")) {
-            loadFragment(new Profile());
+            loadFragment(new ProfileFragment());
         } else if (extras != null && extras.containsKey("Design")){
             loadFragment(new Step0Activity());
         } else {
@@ -45,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     loadFragment(new Step0Activity());
                     return true;
                 case R.id.navigation_me:
-                    loadFragment(new Profile());
+                    loadFragment(new ProfileFragment());
                     return true;
             }
             return false;
@@ -58,6 +62,12 @@ public class MainActivity extends AppCompatActivity {
      */
     public void loadFragment(Fragment fragment) {
         // load fragment
+//        Bundle args = new Bundle();
+//        args.putString("user_id", user_uid);
+//        fragment.setArguments(args);
+
+//        getFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
+
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);

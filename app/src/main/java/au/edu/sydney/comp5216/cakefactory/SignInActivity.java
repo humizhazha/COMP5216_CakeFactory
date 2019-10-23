@@ -1,5 +1,6 @@
 package au.edu.sydney.comp5216.cakefactory;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -93,6 +94,12 @@ public class SignInActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+
+                            SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putString("user_id", user.getUid());
+                            editor.commit();
+
                             Intent it = new Intent(SignInActivity.this, MainActivity.class);
                             startActivity(it);
                         } else {

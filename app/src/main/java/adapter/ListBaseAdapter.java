@@ -19,7 +19,7 @@ import model.Article;
 /**
  * Created by apple on 01/04/16.
  */
-public class ListBaseAdapter extends BaseAdapter {
+public class ListBaseAdapter extends BaseAdapter   {
 
 
     Context context;

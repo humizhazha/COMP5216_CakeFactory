@@ -14,16 +14,20 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import au.edu.sydney.comp5216.cakefactory.EditProfileActivity;
 import au.edu.sydney.comp5216.cakefactory.R;
-import au.edu.sydney.comp5216.cakefactory.Recommendations;
-import model.ProfileModel;
+import au.edu.sydney.comp5216.cakefactory.RecommendationActivity;
+import model.Profile;
 
+/**
+ * RecyclerView adapter for a list of Recommendations.
+ */
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHolder> {
 
     private Context context;
-    private ArrayList<ProfileModel> profileModelArrayList;
+    private ArrayList<Profile> profileModelArrayList;
 
-    public ProfileAdapter(Context context, ArrayList<ProfileModel> profileModelArrayList) {
+    public ProfileAdapter(Context context, ArrayList<Profile> profileModelArrayList) {
         this.context = context;
         this.profileModelArrayList = profileModelArrayList;
     }
@@ -45,13 +49,10 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
             @Override
             public void onClick(View view) {
                 if(position == 0){
-                    Intent i = new Intent(context, Recommendations.class);
+                    Intent i = new Intent(context, RecommendationActivity.class);
                     context.startActivity(i);}
                 if(position == 1){
-                    Intent i = new Intent(context, Recommendations.class);
-                    context.startActivity(i);}
-                if(position == 2){
-                    Intent i = new Intent(context, Recommendations.class);
+                    Intent i = new Intent(context, EditProfileActivity.class);
                     context.startActivity(i);}
             }
         });

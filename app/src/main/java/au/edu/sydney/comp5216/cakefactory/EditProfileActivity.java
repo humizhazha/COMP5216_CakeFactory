@@ -8,11 +8,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class EditProfile extends AppCompatActivity {
+public class EditProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit_profile);
+        setContentView(R.layout.activity_edit_profile);
 
         TextView toolbar = findViewById(R.id.toolbar);
         toolbar.setText("Profile");
@@ -20,7 +20,7 @@ public class EditProfile extends AppCompatActivity {
         ImageView goBack = findViewById(R.id.backArrow);
         goBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(EditProfile.this, MainActivity.class);
+                Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
                 intent.putExtra("Profile",true);
                 overridePendingTransition(0, 0);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

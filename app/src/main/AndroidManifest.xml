@@ -11,48 +11,38 @@
         android:theme="@style/AppTheme">
 
 
-        <activity
-        android:name=".MainActivity"
-        android:label="@string/app_name">
-        <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
+<!--        <activity-->
+<!--            android:name=".MainActivity"-->
+<!--            android:label="@string/app_name">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-        <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+
+
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
-
-
-        <!--<activity-->
-            <!--android:name=".SignInActivity"-->
-            <!--android:label="@string/app_name">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        <!--</activity>-->
-
-        <!--<activity-->
-            <!--android:name=".Step4Activity"-->
-            <!--android:label="@string/app_name">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        <!--</activity>-->
-
-        <!--<activity android:name=".MainActivity"/>-->
+<!--        <activity android:name=".MainActivity"/>-->
         <activity android:name=".SignUpActivity"></activity>
         <activity android:name=".Step1Activity"></activity>
         <activity android:name=".Step2Activity"></activity>
         <activity android:name=".Step3Activity"></activity>
         <activity android:name=".Step4Activity"></activity>
-        <activity android:name=".EditProfile"></activity>
+        <activity android:name=".EditProfileActivity"></activity>
         <activity android:name=".Favourites"></activity>
-        <activity android:name=".Recommendations"></activity>
-        <activity android:name=".RecommendationExample"></activity>
+        <activity android:name=".RecommendationActivity"></activity>
+        <activity android:name=".RecommendationDetailActivity"></activity>
         <activity android:name=".Orders"></activity>
         <activity android:name=".Setting"></activity>
         <activity android:name=".DesignDetail"></activity>

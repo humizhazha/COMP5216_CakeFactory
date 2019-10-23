@@ -15,10 +15,10 @@
 
     <TextView
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Toolbar Title"
-        android:layout_marginLeft="125dp"
+        android:layout_marginLeft="115dp"
         android:textColor="@android:color/white" />
 
     <!--<ImageView-->
