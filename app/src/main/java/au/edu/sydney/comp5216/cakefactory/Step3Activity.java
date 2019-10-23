@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import model.DesignModel;
+
 public class Step3Activity extends AppCompatActivity {
     private ImageView chocolate;
     private ImageView cheese;
@@ -19,6 +21,8 @@ public class Step3Activity extends AppCompatActivity {
     private ImageView strawberry;
     private ImageView vanilla;
     private String selected;
+    private DesignModel currentDesign;
+    Drawable highlight;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,19 +30,12 @@ public class Step3Activity extends AppCompatActivity {
 
         TextView toolbar = findViewById(R.id.toolbar);
         toolbar.setText("Design");
+        highlight = getResources().getDrawable(R.drawable.ic_border);
+        currentDesign = (DesignModel) getIntent().getSerializableExtra("design");
+
 
         ImageView goBack = findViewById(R.id.backArrow);
         goBack.setVisibility(View.INVISIBLE);
-//        goBack.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Step3Activity.this, MainActivity.class);
-//                intent.putExtra("Design",true);
-//                overridePendingTransition(0, 0);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-//                finish();
-//                startActivity(intent);
-//            }
-//        });
 
         this.overridePendingTransition(R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left);
@@ -50,20 +47,47 @@ public class Step3Activity extends AppCompatActivity {
         vanilla = (ImageView)findViewById(R.id.vanilla);
 
         drawBorder();
+        iniBorder();
+
+    }
+
+    private void iniBorder(){
+        if(currentDesign.getFlavour()!=null){
+            String previousSelection = currentDesign.getFlavour();
+            if(previousSelection.equals("chocolate")){
+                chocolate.setBackground(highlight);
+            }
+            else if(previousSelection.equals("cheese")){
+                cheese.setBackground(highlight);
+            }else if(previousSelection.equals("matcha")){
+                matcha.setBackground(highlight);
+            }else if(previousSelection.equals("strawberry")){
+                strawberry.setBackground(highlight);
+            }else{
+                vanilla.setBackground(highlight);
+            }
+        }
 
     }
     public void goNext(View view) {
         Intent intent = new Intent(Step3Activity.this, Step4Activity.class);
-        if(selected==null){
+        if(currentDesign.getFlavour()==null){
             Toast.makeText(Step3Activity.this, "Please select your cake flavour!", Toast.LENGTH_SHORT).show();
         }else{
-            startActivity(intent);
+            currentDesign.setFlavour(selected);
+            if (intent != null) {
+                intent.putExtra("design", currentDesign);
+                startActivity(intent);
+            }
         }
 
     }
     public void goBack(View view) {
         Intent intent = new Intent(Step3Activity.this, Step2Activity.class);
-        startActivity(intent);
+        if (intent != null) {
+            intent.putExtra("design", currentDesign);
+            startActivity(intent);
+        }
 
     }
 
@@ -71,13 +95,13 @@ public class Step3Activity extends AppCompatActivity {
         chocolate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Drawable highlight = getResources().getDrawable(R.drawable.ic_border);
                 chocolate.setBackground(highlight);
                 cheese.setBackground(null);
                 matcha.setBackground(null);
                 strawberry.setBackground(null);
                 vanilla.setBackground(null);
                 selected = "chocolate";
+                currentDesign.setFlavour(selected);
 
             }
         });
@@ -85,13 +109,13 @@ public class Step3Activity extends AppCompatActivity {
         cheese.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Drawable highlight = getResources().getDrawable( R.drawable.ic_border);
                 chocolate.setBackground(null);
                 cheese.setBackground(highlight);
                 matcha.setBackground(null);
                 strawberry.setBackground(null);
                 vanilla.setBackground(null);
                 selected = "cheese";
+                currentDesign.setFlavour(selected);
 
             }
         });
@@ -99,39 +123,39 @@ public class Step3Activity extends AppCompatActivity {
         matcha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Drawable highlight = getResources().getDrawable( R.drawable.ic_border);
                 chocolate.setBackground(null);
                 cheese.setBackground(null);
                 matcha.setBackground(highlight);
                 strawberry.setBackground(null);
                 vanilla.setBackground(null);
                 selected = "matcha";
+                currentDesign.setFlavour(selected);
             }
         });
 
         strawberry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Drawable highlight = getResources().getDrawable( R.drawable.ic_border);
                 chocolate.setBackground(null);
                 cheese.setBackground(null);
                 matcha.setBackground(null);
                 strawberry.setBackground(highlight);
                 vanilla.setBackground(null);
                 selected = "strawberry";
+                currentDesign.setFlavour(selected);
             }
         });
 
         vanilla.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Drawable highlight = getResources().getDrawable( R.drawable.ic_border);
                 chocolate.setBackground(null);
                 cheese.setBackground(null);
                 matcha.setBackground(null);
                 strawberry.setBackground(null);
                 vanilla.setBackground(highlight);
                 selected = "vanilla";
+                currentDesign.setFlavour(selected);
             }
         });
 

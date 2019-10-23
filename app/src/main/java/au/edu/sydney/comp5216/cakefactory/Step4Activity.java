@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.view.MotionEvent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 public class Step4Activity extends AppCompatActivity implements View.OnTouchListener {
     int windowwidth; // Actually the width of the RelativeLayout.
@@ -151,8 +153,25 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
 
     }
     public void goBack(View view) {
-        Intent intent = new Intent(Step4Activity.this, Step3Activity.class);
-        startActivity(intent);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(Step4Activity.this);
+        builder.setTitle(R.string.dialog_cancel_title)
+                .setMessage(R.string.dialog_cancel_msg)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(Step4Activity.this, Step3Activity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // User cancelled the dialog
+                        // Nothing happens
+                    }
+                });
+        builder.create().show();
+
+
 
     }
     public void emptyBorder(){
