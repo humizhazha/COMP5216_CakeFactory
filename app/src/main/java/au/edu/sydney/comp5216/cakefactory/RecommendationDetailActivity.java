@@ -17,7 +17,7 @@ import com.google.firebase.firestore.ListenerRegistration;
 import model.Recommendation;
 
 /**
- * The details page for the selected recommendation
+ * The detailed page for selected recommendation
  */
 public class RecommendationDetailActivity extends AppCompatActivity implements
         View.OnClickListener,
@@ -25,6 +25,7 @@ public class RecommendationDetailActivity extends AppCompatActivity implements
 
     public static final String KEY_RECOMMENDATION_ID = "key_recommendation_id";
 
+    //Firebase
     private FirebaseFirestore mFirestore;
     private DocumentReference mRecommendationRef;
     private ListenerRegistration mRestaurantRegistration;

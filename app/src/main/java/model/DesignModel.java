@@ -3,8 +3,10 @@ package model;
 import java.util.ArrayList;
 import java.io.Serializable;
 
+/**
+ * Model for design layout
+ */
 @SuppressWarnings("serial")
-
 public class DesignModel implements Serializable{
     String shape;
     String type;

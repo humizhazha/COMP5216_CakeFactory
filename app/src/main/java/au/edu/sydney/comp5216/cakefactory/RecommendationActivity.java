@@ -12,10 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 
 import adapter.RecommendationAdapter;
 
+/**
+ * Recommendation page
+ */
 public class RecommendationActivity extends AppCompatActivity implements
         View.OnClickListener,
         RecommendationAdapter.OnRecommendationSelectedListener {
@@ -26,6 +30,7 @@ public class RecommendationActivity extends AppCompatActivity implements
 
     // Firebase
     private FirebaseFirestore mFirestore;
+    private ListenerRegistration mRecommendationRef;
     private Query mQuery;
 
     @Override
@@ -98,12 +103,12 @@ public class RecommendationActivity extends AppCompatActivity implements
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.backArrow) {
-                Intent intent = new Intent(RecommendationActivity.this, MainActivity.class);
-                intent.putExtra("Profile",true);
-                overridePendingTransition(0, 0);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                finish();
-                startActivity(intent);
+            Intent intent = new Intent(RecommendationActivity.this, MainActivity.class);
+            intent.putExtra("Profile",true);
+            overridePendingTransition(0, 0);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            finish();
+            startActivity(intent);
         }
     }
 }

@@ -1,6 +1,5 @@
 package au.edu.sydney.comp5216.cakefactory;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -12,31 +11,36 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.view.MenuItem;
 
+/**
+ * MainActivity page
+ * Include bottom nav bar and fragment transfer
+ */
 public class MainActivity extends AppCompatActivity {
 
-    private String user_uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Setup bottom navigation view for 3 fragment pages
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         Bundle extras = getIntent().getExtras();
-
-//        SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
-//        user_uid = preferences.getString("user_id", "0");
 
         if(extras != null && extras.containsKey("Profile")) {
             loadFragment(new ProfileFragment());
         } else if (extras != null && extras.containsKey("Design")){
             loadFragment(new Step0Activity());
         } else {
+            // Default goes to Discovery fragment
             loadFragment(new Discovery());
         }
     }
 
+    /**
+     * Setup fragment transaction listen for bottom navigation bar
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -57,17 +61,11 @@ public class MainActivity extends AppCompatActivity {
     };
 
     /**
-     *  Loading fragment into container
+     * Loading fragment into container
      * @param fragment
      */
     public void loadFragment(Fragment fragment) {
         // load fragment
-//        Bundle args = new Bundle();
-//        args.putString("user_id", user_uid);
-//        fragment.setArguments(args);
-
-//        getFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
-
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);

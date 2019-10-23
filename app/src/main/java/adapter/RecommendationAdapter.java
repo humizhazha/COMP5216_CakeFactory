@@ -28,9 +28,8 @@ import com.bumptech.glide.Glide;
 import au.edu.sydney.comp5216.cakefactory.R;
 import model.Recommendation;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 /**
@@ -61,7 +60,7 @@ public class RecommendationAdapter extends FirestoreAdapter<RecommendationAdapte
         holder.bind(getSnapshot(position), mListener);
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView topic;
         TextView title;
@@ -70,7 +69,7 @@ public class RecommendationAdapter extends FirestoreAdapter<RecommendationAdapte
         TextView number;
 
         ImageView heart;
-        ImageView  heart_click;
+        ImageView heart_click;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -117,7 +116,7 @@ public class RecommendationAdapter extends FirestoreAdapter<RecommendationAdapte
                 public void onClick(View view) {
                     heart.setVisibility(View.INVISIBLE);
                     heart_click.setVisibility(View.VISIBLE);
-                    onAddHeartClicked(snapshot, recommendation.getNumber() + 1);
+//                    onAddHeartClicked(snapshot, recommendation.getNumber() + 1);
                     number.setText(String.valueOf(recommendation.getNumber() + 1));
                 }
             });
@@ -127,17 +126,24 @@ public class RecommendationAdapter extends FirestoreAdapter<RecommendationAdapte
                 public void onClick(View view) {
                     heart.setVisibility(View.VISIBLE);
                     heart_click.setVisibility(View.INVISIBLE);
+//                    onAddHeartClicked(snapshot, recommendation.getNumber() - 1);
                     number.setText(String.valueOf(recommendation.getNumber()));
                 }
             });
         }
 
+        /**
+         * Update the number of like inside 'recommendations' collection
+         * @param snapshot
+         * @param newVal
+         */
         private void onAddHeartClicked(DocumentSnapshot snapshot, int newVal) {
-            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-            rootRef.child("recommendations")
-                    .child(snapshot.getId())
-                    .child("number")
-                    .setValue(newVal);
+            FirebaseFirestore.setLoggingEnabled(true);
+            FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
+            mFirestore
+                    .collection("recommendations")
+                    .document(snapshot.getId())
+                    .update("number", newVal);
         }
     }
 }

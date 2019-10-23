@@ -36,7 +36,8 @@ import java.util.ArrayList;
  * {@link DocumentSnapshot#toObject(Class)} is not cached so the same object may be deserialized
  * many times as the user scrolls.
  *
- * See the adapter classes in FirebaseUI (https://github.com/firebase/FirebaseUI-Android/tree/master/firestore) for a
+ * See the adapter classes in FirebaseUI
+ * (https://github.com/firebase/FirebaseUI-Android/tree/master/firestore) for a
  * more efficient implementation of a Firestore RecyclerView Adapter.
  */
 public abstract class FirestoreAdapter<VH extends RecyclerView.ViewHolder>

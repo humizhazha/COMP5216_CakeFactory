@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import au.edu.sydney.comp5216.cakefactory.R;
 import model.OrderModel;
 
+/**
+ * RecyclerView adapter for a list of Orders.
+ */
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
 
     private Context context;

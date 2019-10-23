@@ -21,6 +21,7 @@ import model.User;
 
 /**
  * User profile page
+ * Show the profile of logged user from Cloud Firestore
  */
 public class EditProfileActivity extends AppCompatActivity implements
         View.OnClickListener,
@@ -29,6 +30,8 @@ public class EditProfileActivity extends AppCompatActivity implements
     private FirebaseFirestore mFirestore;
     private DocumentReference mUserRef;
     private ListenerRegistration mUserRegistration;
+
+    String userId;
 
     private ImageView setting;
     private ImageView avatar;
@@ -61,13 +64,14 @@ public class EditProfileActivity extends AppCompatActivity implements
         mobileIcon = findViewById(R.id.mobileIcon);
 
         findViewById(R.id.backArrow).setOnClickListener(this);
+        findViewById(R.id.setting).setOnClickListener(this);
         findViewById(R.id.usernameIcon).setOnClickListener(this);
         findViewById(R.id.emailIcon).setOnClickListener(this);
         findViewById(R.id.mobileIcon).setOnClickListener(this);
 
         // Get restaurant ID from extras
         SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
-        String userId = preferences.getString("user_id", "0");
+        userId = preferences.getString("user_id", "0");
         userId = "US8ef5moenRIrBHB5P7aySB8ssx2";
         if (userId == null) {
             throw new IllegalArgumentException("Must pass extra userId");
@@ -105,6 +109,7 @@ public class EditProfileActivity extends AppCompatActivity implements
                 finish();
                 startActivity(intent);
                 break;
+            case R.id.setting:
             case R.id.usernameIcon:
                 intent = new Intent(EditProfileActivity.this,
                         EditProfileDetailActivity.class);

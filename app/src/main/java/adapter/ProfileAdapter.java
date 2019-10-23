@@ -45,6 +45,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
         holder.arrow.setImageResource(profileModelArrayList.get(position).getArrow());
         holder.title.setText(profileModelArrayList.get(position).getTitle());
 
+        // OnClick event for Recommendations and Profile function
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

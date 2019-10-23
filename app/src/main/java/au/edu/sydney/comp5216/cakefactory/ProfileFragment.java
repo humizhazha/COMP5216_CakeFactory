@@ -3,44 +3,39 @@ package au.edu.sydney.comp5216.cakefactory;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Date;
-
-import javax.annotation.Nullable;
 
 import adapter.ProfileAdapter;
 import de.hdodenhof.circleimageview.CircleImageView;
 import model.Profile;
-import model.Recommendation;
 import model.User;
 
 import static android.content.Context.MODE_PRIVATE;
 
+/**
+ * Profile fragment page
+ * Show user's username
+ * User can navigate saved articles, designed cakes and order history
+ * User can also view recommendations from the system and update user profile.
+ */
 public class ProfileFragment extends Fragment implements View.OnClickListener,
         EventListener<DocumentSnapshot> {
 
@@ -50,7 +45,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
 
     private CircleImageView profile_image;
     private TextView name;
-    //        TextView Bio;
     private TextView favouriteNum;
     private TextView designNum;
     private TextView orderNum;
@@ -107,6 +101,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
         if (userId == null) {
             throw new IllegalArgumentException("Must pass extra userId");
         }
+
         // Enable Firestore logging
         FirebaseFirestore.setLoggingEnabled(true);
 
@@ -163,7 +158,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
             case R.id.setting:
                 startActivity(new Intent(getActivity(), Setting.class));
                 break;
-
         }
     }
 
@@ -171,9 +165,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
     * Listener for the User document ({@link #mUserRef}).
     */
     @Override
-
-
-
     public void onEvent(DocumentSnapshot snapshot, FirebaseFirestoreException e) {
         User user = snapshot.toObject(User.class);
         Glide.with(profile_image.getContext())

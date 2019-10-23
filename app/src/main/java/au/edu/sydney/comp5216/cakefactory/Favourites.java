@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
@@ -33,6 +32,11 @@ import custom_font.ExpandableHeightListView;
 import model.Article;
 import model.User;
 
+/**
+ * Collected article page
+ * Show articles collected by user from Cloud Firestore
+ * User can search article name
+ */
 public class Favourites extends AppCompatActivity implements EventListener<DocumentSnapshot> {
 
     private ListBaseAdapter baseAdapter;
@@ -105,6 +109,9 @@ public class Favourites extends AppCompatActivity implements EventListener<Docum
         userArticles = snapshot.toObject(User.class).getArticles();
     }
 
+    /**
+     * Read article from Firestore
+     */
     private void readFromDatabase() {
         // Attach a listener to read the data at our posts reference
         db.collection("article")
@@ -113,6 +120,8 @@ public class Favourites extends AppCompatActivity implements EventListener<Docum
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
+
+                            // check whether article is collected by user
                             if (userArticles.contains(document.getId())) {
                                 String author = document.get("author").toString();
                                 String title = document.get("title").toString();

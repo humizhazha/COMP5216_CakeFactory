@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Model for Article layout
+ */
 public class Article {
     private int newsimage1;
     private String newsimage2;

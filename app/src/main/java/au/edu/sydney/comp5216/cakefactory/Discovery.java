@@ -1,26 +1,15 @@
 package au.edu.sydney.comp5216.cakefactory;
 
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DataSnapshot;
-
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.Date;
-
-import com.bumptech.glide.Glide;
 
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.Query;
@@ -45,6 +34,11 @@ import model.Article;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+/**
+ * Discovery page layout, a fragment inside MainActivity
+ * Show all articles from Cloud Firestore
+ * User can search article name
+ */
 public class Discovery extends Fragment {
 
     private ExpandableHeightListView listview;
