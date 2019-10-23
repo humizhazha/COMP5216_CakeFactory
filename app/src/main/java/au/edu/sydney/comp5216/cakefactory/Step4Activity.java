@@ -45,12 +45,15 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
     private Drawable currentDeco;
     private int position_x;
     private int position_y;
+    private int relative_position_x;
+    private int relative_position_y;
     private DesignModel currentDesign;
     ArrayList<String> decorations = new ArrayList<>();
     ArrayList<Integer> X = new ArrayList<>();
     ArrayList<Integer> Y = new ArrayList<>();
     private FirebaseFirestore db;
     CollectionReference design;
+    String selected;
     private static final String TAG = Step4Activity.class.getSimpleName();
 
     @Override
@@ -116,6 +119,10 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
         final int Y = (int) event.getRawY();
         position_x = X;
         position_y = Y;
+        relative_position_x = (int) event.getX();
+        relative_position_y = (int) event.getY();
+
+
 
         // Check if the image view is out of the parent view and report it if it is.
         // Only report once the image goes out and don't stack toasts.
@@ -177,8 +184,12 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
     }
 
     public void goNext(View view) {
-//        Intent intent = new Intent(Step4Activity.this, Step4Activity.class);
-//        startActivity(intent);
+        if(selected!=null){
+            decorations.add(selected);
+            X.add(position_x);
+            Y.add(position_y);
+        }
+
         currentDesign.setDecorations(decorations);
         currentDesign.setX(X);
         currentDesign.setY(Y);
@@ -203,6 +214,14 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
                         Log.w(TAG, "Error writing document", e);
                     }
                 });
+        Toast.makeText(Step4Activity.this, "Your design has been saved!", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(Step4Activity.this, DesignDetail.class);
+        if (intent != null) {
+            intent.putExtra("design", currentDesign);
+            startActivity(intent);
+        }
+
 
 
     }
@@ -323,17 +342,20 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
     }
 
     private ImageView addDecoration( ImageView mImageView, View view, String type){
+
+
         ImageView temp = new ImageView(Step4Activity.this);
         int w = (int) (50 * Step4Activity.this.getResources().getDisplayMetrics().density);
         int h = (int) (50 * Step4Activity.this.getResources().getDisplayMetrics().density);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(w, h);
         temp.setLayoutParams(layoutParams);
         temp.setImageDrawable(mImageView.getDrawable());
-        temp.setX(position_x-w);
-        temp.setY(position_y-h);
+        temp.setX(mImageView.getLeft());
+        temp.setY(mImageView.getTop()+200);
         decorations.add(type);
-        X.add(position_x-w);
-        Y.add(position_y-h);
+        X.add(mImageView.getLeft()-35);
+        Y.add(mImageView.getTop());
+        selected = type;
 
         return temp;
 
