@@ -21,10 +21,20 @@
         android:layout_marginLeft="115dp"
         android:textColor="@android:color/white" />
 
+    <TextView
+        android:id="@+id/done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:visibility="gone"
+        android:textColor="#a2a1b8"
+        android:layout_marginRight="15dp"
+        android:layout_gravity="right" />
+
     <ImageView
         android:id="@+id/setting"
         android:layout_marginRight="15dp"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_settings_black_24dp"

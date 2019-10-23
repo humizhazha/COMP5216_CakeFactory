@@ -69,7 +69,7 @@ public class EditProfileActivity extends AppCompatActivity implements
         findViewById(R.id.emailIcon).setOnClickListener(this);
         findViewById(R.id.mobileIcon).setOnClickListener(this);
 
-        // Get restaurant ID from extras
+        // Get user ID from extras
         SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
         userId = preferences.getString("user_id", "0");
         userId = "US8ef5moenRIrBHB5P7aySB8ssx2";
