@@ -45,6 +45,8 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
     private Drawable currentDeco;
     private int position_x;
     private int position_y;
+    private int relative_position_x;
+    private int relative_position_y;
     private DesignModel currentDesign;
     ArrayList<String> decorations = new ArrayList<>();
     ArrayList<Integer> X = new ArrayList<>();
@@ -114,6 +116,8 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
     public boolean onTouch(View view, MotionEvent event) {
         final int X = (int) event.getRawX();
         final int Y = (int) event.getRawY();
+        relative_position_x = (int) event.getX();
+        relative_position_y = (int) event.getY();
         position_x = X;
         position_y = Y;
 
@@ -177,8 +181,6 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
     }
 
     public void goNext(View view) {
-//        Intent intent = new Intent(Step4Activity.this, Step4Activity.class);
-//        startActivity(intent);
         currentDesign.setDecorations(decorations);
         currentDesign.setX(X);
         currentDesign.setY(Y);
@@ -203,6 +205,14 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
                         Log.w(TAG, "Error writing document", e);
                     }
                 });
+        Toast.makeText(Step4Activity.this, "Your design has been saved!", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(Step4Activity.this, DesignDetail.class);
+        if (intent != null) {
+            intent.putExtra("design", currentDesign);
+            startActivity(intent);
+        }
+
 
 
     }
@@ -332,8 +342,8 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
         temp.setX(position_x-w);
         temp.setY(position_y-h);
         decorations.add(type);
-        X.add(position_x-w);
-        Y.add(position_y-h);
+        X.add(relative_position_x);
+        Y.add(relative_position_y);
 
         return temp;
 
