@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,6 @@ public class ListBaseAdapter extends BaseAdapter {
 
 
     public ListBaseAdapter(Context context, ArrayList<Article> bean) {
-
 
         this.context = context;
         this.bean = bean;
@@ -69,7 +69,6 @@ public class ListBaseAdapter extends BaseAdapter {
 
             viewHolder.newsimage1 = (ImageView) convertView.findViewById(R.id.newsimage1);
             viewHolder.newsimage2 = (ImageView) convertView.findViewById(R.id.newsimage2);
-            viewHolder.more = (ImageView) convertView.findViewById(R.id.more);
             viewHolder.newsname = (TextView) convertView.findViewById(R.id.newsname);
             viewHolder.time = (TextView) convertView.findViewById(R.id.time);
             viewHolder.news = (TextView) convertView.findViewById(R.id.news);
@@ -91,10 +90,11 @@ public class ListBaseAdapter extends BaseAdapter {
 
 
         Article bean = (Article) getItem(position);
+        Glide.with(viewHolder.newsimage2.getContext())
+                .load(bean.getNewsimage2())
+                .into(viewHolder.newsimage2);
 
         viewHolder.newsimage1.setImageResource(bean.getNewsimage1());
-        viewHolder.newsimage2.setImageResource(bean.getNewsimage2());
-        viewHolder.more.setImageResource(bean.getMore());
         viewHolder.newsname.setText(bean.getNewsname());
         viewHolder.time.setText(bean.getTime());
         viewHolder.news.setText(bean.getNews());
@@ -108,12 +108,10 @@ public class ListBaseAdapter extends BaseAdapter {
 
         ImageView newsimage1;
         ImageView newsimage2;
-        ImageView more;
         TextView newsname;
         TextView time;
         TextView news;
         TextView newssub;
-
 
     }
 }

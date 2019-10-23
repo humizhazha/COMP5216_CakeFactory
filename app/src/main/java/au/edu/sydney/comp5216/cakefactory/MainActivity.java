@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        loadFragment(new Profile());
         Bundle extras = getIntent().getExtras();
         if(extras != null && extras.containsKey("Profile")) {
             loadFragment(new Profile());
