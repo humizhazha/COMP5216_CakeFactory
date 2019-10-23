@@ -30,7 +30,7 @@ import adapter.ProfileAdapter;
 import de.hdodenhof.circleimageview.CircleImageView;
 import model.Profile;
 import model.Recommendation;
-import model.User;
+//import model.User;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -171,14 +171,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
      //     */
     @Override
     public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirebaseFirestoreException e) {
-        User user = snapshot.toObject(User.class);
-        Glide.with(profile_image.getContext())
-                .load(user.getAvatar())
-                .into(profile_image);
-
-        name.setText(user.getUsername());
-        favouriteNum.setText(user.getArticles().size());
-        designNum.setText(user.getDesigns().size());
-        orderNum.setText(user.getOrders().size());
+//        User user = snapshot.toObject(User.class);
+//        Glide.with(profile_image.getContext())
+//                .load(user.getAvatar())
+//                .into(profile_image);
+//
+//        name.setText(user.getUsername());
+//        favouriteNum.setText(user.getArticles().size());
+//        designNum.setText(user.getDesigns().size());
+//        orderNum.setText(user.getOrders().size());
     }
 }

@@ -51,8 +51,6 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
     ArrayList<String> decorations = new ArrayList<>();
     ArrayList<Integer> X = new ArrayList<>();
     ArrayList<Integer> Y = new ArrayList<>();
-    private FirebaseFirestore db;
-    CollectionReference design;
     String selected;
     private static final String TAG = Step4Activity.class.getSimpleName();
 
@@ -83,7 +81,6 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
         bean = (ImageView)findViewById(R.id.beans);
         candle = (ImageView)findViewById(R.id.candle);
         startDecorationListener();
-        initFirestore();
         mImageView.setImageDrawable(null);
 
         // These these following 2 lines that address layoutparams set the width
@@ -107,12 +104,6 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
     // don't over report.
     private boolean isOutReported = false;
 
-    private void initFirestore() {
-
-        db = FirebaseFirestore.getInstance();
-        design = db.collection("design");
-
-    }
 
     public boolean onTouch(View view, MotionEvent event) {
         final int X = (int) event.getRawX();
@@ -189,32 +180,9 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
             X.add(position_x);
             Y.add(position_y);
         }
-
         currentDesign.setDecorations(decorations);
         currentDesign.setX(X);
         currentDesign.setY(Y);
-        Map<String, Object> data = new HashMap<>();
-        data.put("flavour", currentDesign.getFlavour());
-        data.put("shape", currentDesign.getShape());
-        data.put("type", currentDesign.getType());
-        data.put("X", X);
-        data.put("Y", Y);
-        data.put("decorations", decorations);
-        design.document()
-                .set(data)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot successfully written!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error writing document", e);
-                    }
-                });
-        Toast.makeText(Step4Activity.this, "Your design has been saved!", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(Step4Activity.this, DesignDetail.class);
         if (intent != null) {
@@ -351,7 +319,7 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
         temp.setLayoutParams(layoutParams);
         temp.setImageDrawable(mImageView.getDrawable());
         temp.setX(mImageView.getLeft());
-        temp.setY(mImageView.getTop()+200);
+        temp.setY(mImageView.getTop()+215);
         decorations.add(type);
         X.add(mImageView.getLeft()-35);
         Y.add(mImageView.getTop());

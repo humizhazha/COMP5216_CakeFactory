@@ -2,6 +2,7 @@ package au.edu.sydney.comp5216.cakefactory;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,14 +10,24 @@ import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 import model.DesignModel;
 
@@ -34,6 +45,9 @@ public class DesignDetail extends AppCompatActivity {
     private Drawable candle;
     private Drawable sprinkling;
     private ViewGroup cakeBase;
+    private FirebaseFirestore db;
+    private CollectionReference design;
+    private static final String TAG = DesignDetail.class.getSimpleName();
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -57,9 +71,15 @@ public class DesignDetail extends AppCompatActivity {
         date = (TextView) findViewById(R.id.date_text);
 
 
-
+        initFirestore();
         fillInInformation();
         drawDecoration();
+
+    }
+    private void initFirestore() {
+
+        db = FirebaseFirestore.getInstance();
+        design = db.collection("design");
 
     }
     private void fillInInformation(){
@@ -105,6 +125,33 @@ public class DesignDetail extends AppCompatActivity {
 
         }
 
+    }
+    public void submitDesign(View view){
+        Map<String, Object> data = new HashMap<>();
+        data.put("flavour", currentDesign.getFlavour());
+        data.put("shape", currentDesign.getShape());
+        data.put("type", currentDesign.getType());
+        data.put("X", currentDesign.getX());
+        data.put("Y", currentDesign.getY());
+        data.put("decorations", currentDesign.getDecorations());
+        design.document()
+                .set(data)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                        Toast.makeText(DesignDetail.this, "Your design has been saved!", Toast.LENGTH_SHORT).show();
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+        Intent intent = new Intent(DesignDetail.this, MainActivity.class);
+        startActivity(intent);
     }
 
 

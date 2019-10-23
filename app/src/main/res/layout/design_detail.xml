@@ -3,18 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:background="@color/colorWhite">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-
         >
 
         <FrameLayout
-            android:layout_width="299dp"
-            android:layout_height="600dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@drawable/orderbg">
 
             <RelativeLayout
@@ -26,7 +25,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="49dp"
-                    android:layout_marginTop="35dp"
+                    android:layout_marginTop="55dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -43,7 +42,7 @@
                         android:gravity="center"
                         android:text="DESIGN SUMMARY"
                         android:textColor="@color/colorWhite"
-                        android:textSize="17dp" />
+                        android:textSize="19dp" />
                 </LinearLayout>
 
 
@@ -210,10 +209,18 @@
                         android:layout_height="325dp"
                         android:src="@drawable/blank_cake" />
 
-                </RelativeLayout>
 
+                </RelativeLayout>
+                <ImageView
+                    android:id="@+id/submit"
+                    android:layout_below="@+id/base"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:onClick="submitDesign"
+                    android:src="@drawable/submit" />
 
             </RelativeLayout>
+
         </FrameLayout>
 
 
