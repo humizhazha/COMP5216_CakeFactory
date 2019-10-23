@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,9 +39,9 @@ public class EditProfileActivity extends AppCompatActivity implements
     private TextView username;
     private TextView email;
     private TextView mobile;
-    private ImageView usernameIcon;
-    private ImageView emailIcon;
-    private ImageView mobileIcon;
+    private LinearLayout usernameView;
+    private LinearLayout emailView;;
+    private LinearLayout mobileView;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,15 +60,15 @@ public class EditProfileActivity extends AppCompatActivity implements
         email = findViewById(R.id.emailInput);
         mobile = findViewById(R.id.mobileInput);
 
-        usernameIcon = findViewById(R.id.usernameIcon);
-        emailIcon = findViewById(R.id.emailIcon);
-        mobileIcon = findViewById(R.id.mobileIcon);
+        usernameView = findViewById(R.id.username);
+        emailView = findViewById(R.id.email);
+        mobileView = findViewById(R.id.mobile);
 
         findViewById(R.id.backArrow).setOnClickListener(this);
         findViewById(R.id.setting).setOnClickListener(this);
-        findViewById(R.id.usernameIcon).setOnClickListener(this);
-        findViewById(R.id.emailIcon).setOnClickListener(this);
-        findViewById(R.id.mobileIcon).setOnClickListener(this);
+        findViewById(R.id.username).setOnClickListener(this);
+        findViewById(R.id.email).setOnClickListener(this);
+        findViewById(R.id.mobile).setOnClickListener(this);
 
         // Get user ID from extras
         SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
@@ -110,19 +111,19 @@ public class EditProfileActivity extends AppCompatActivity implements
                 startActivity(intent);
                 break;
             case R.id.setting:
-            case R.id.usernameIcon:
+            case R.id.username:
                 intent = new Intent(EditProfileActivity.this,
                         EditProfileDetailActivity.class);
                 intent.putExtra("Username", username.getText());
                 startActivity(intent);
                 break;
-            case R.id.emailIcon:
+            case R.id.email:
                 intent = new Intent(EditProfileActivity.this,
                         EditProfileDetailActivity.class);
                 intent.putExtra("Email", email.getText());
                 startActivity(intent);
                 break;
-            case R.id.mobileIcon:
+            case R.id.mobile:
                 intent = new Intent(EditProfileActivity.this,
                         EditProfileDetailActivity.class);
                 intent.putExtra("Mobile", mobile.getText());
