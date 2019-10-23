@@ -46,7 +46,6 @@ public class Step2Activity extends AppCompatActivity {
         roll = (ImageView)findViewById(R.id.roll);
         slice = (ImageView)findViewById(R.id.slice);
         iniBorder();
-
         drawBorder();
 
     }

@@ -48,7 +48,7 @@
         <activity android:name=".Step1Activity"></activity>
         <activity android:name=".Step2Activity"></activity>
         <activity android:name=".Step3Activity"></activity>
-        <!--<activity android:name=".Step4Activity"></activity>-->
+        <activity android:name=".Step4Activity"></activity>
         <activity android:name=".EditProfile"></activity>
         <activity android:name=".Favourites"></activity>
         <activity android:name=".Recommendations"></activity>

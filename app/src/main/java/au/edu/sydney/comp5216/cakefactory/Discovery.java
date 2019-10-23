@@ -53,20 +53,11 @@ public class Discovery extends Fragment {
     EditText search;
     private FirebaseFirestore db;
     private Query mQuery;
-    DatabaseReference ref;
     CollectionReference articles;
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private static final String TAG = Discovery.class.getSimpleName();
 
     private int[] IMAGE1 = {R.drawable.newsname1, R.drawable.newsname1, R.drawable.newsname1};
-    private int[] IMAGE2 = {R.drawable.img1, R.drawable.img1, R.drawable.img1};
-    private String[] NEWSNAME = {"Fox News .", "Fox News .", "Fox News ."};
-    private String[] TITLE = {"1 day ago", "1 day ago", "1 day ago"};
-    private String[] NEWS = {"Trump’s Plan for AmericanMade iPhonew Wold Be Disastrous. Trump’s Plan for AmericanMade iPhonew Wold Be Disastrous",
-            "Trump’s Plan for AmericanMade iPhonew Wold Be Disastrous. Trump’s Plan for AmericanMade iPhonew Wold Be Disastrous",
-            "Trump’s Plan for AmericanMade iPhonew Wold Be Disastrous. Trump’s Plan for AmericanMade iPhonew Wold Be Disastrous"};
-    private String[] NEWSSUB = {"Why even a President Trump couldn’t make Apple manufacture iPhone in the state.", "Why even a President Trump couldn’t make Apple manufacture iPhone in the state.",
-            "Why even a President Trump couldn’t make Apple manufacture iPhone in the state."};
 
     public Discovery() {
     }

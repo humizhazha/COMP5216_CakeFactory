@@ -15,6 +15,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import androidx.annotation.NonNull;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Arrays;
+import model.DesignModel;
+import android.util.Log;
 
 public class Step4Activity extends AppCompatActivity implements View.OnTouchListener {
     int windowwidth; // Actually the width of the RelativeLayout.
@@ -32,6 +45,13 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
     private Drawable currentDeco;
     private int position_x;
     private int position_y;
+    private DesignModel currentDesign;
+    ArrayList<String> decorations = new ArrayList<>();
+    ArrayList<Integer> X = new ArrayList<>();
+    ArrayList<Integer> Y = new ArrayList<>();
+    private FirebaseFirestore db;
+    CollectionReference design;
+    private static final String TAG = Step4Activity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +63,7 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
 
         ImageView goBack = findViewById(R.id.backArrow);
         goBack.setVisibility(View.INVISIBLE);
+        currentDesign = (DesignModel) getIntent().getSerializableExtra("design");
 
         this.overridePendingTransition(R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left);
@@ -59,6 +80,7 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
         bean = (ImageView)findViewById(R.id.beans);
         candle = (ImageView)findViewById(R.id.candle);
         startDecorationListener();
+        initFirestore();
         mImageView.setImageDrawable(null);
 
         // These these following 2 lines that address layoutparams set the width
@@ -81,6 +103,13 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
     // Tracks when we have reported that the image view is out of bounds so we
     // don't over report.
     private boolean isOutReported = false;
+
+    private void initFirestore() {
+
+        db = FirebaseFirestore.getInstance();
+        design = db.collection("design");
+
+    }
 
     public boolean onTouch(View view, MotionEvent event) {
         final int X = (int) event.getRawX();
@@ -148,8 +177,33 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
     }
 
     public void goNext(View view) {
-        Intent intent = new Intent(Step4Activity.this, Step4Activity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(Step4Activity.this, Step4Activity.class);
+//        startActivity(intent);
+        currentDesign.setDecorations(decorations);
+        currentDesign.setX(X);
+        currentDesign.setY(Y);
+        Map<String, Object> data = new HashMap<>();
+        data.put("flavour", currentDesign.getFlavour());
+        data.put("shape", currentDesign.getShape());
+        data.put("type", currentDesign.getType());
+        data.put("X", X);
+        data.put("Y", Y);
+        data.put("decorations", decorations);
+        design.document()
+                .set(data)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+
 
     }
     public void goBack(View view) {
@@ -160,7 +214,10 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent intent = new Intent(Step4Activity.this, Step3Activity.class);
-                        startActivity(intent);
+                        if (intent != null) {
+                            intent.putExtra("design", currentDesign);
+                            startActivity(intent);
+                        }
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -189,7 +246,7 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
             public void onClick(View v) {
                 Drawable highlight = getResources().getDrawable(R.drawable.ic_border);
                 currentDeco = getResources().getDrawable(R.drawable.deco_marshmallows);
-                ImageView temp = addDecoration(mImageView,v);
+                ImageView temp = addDecoration(mImageView,v,"marshmallows");
                 mRrootLayout.addView(temp);
                 mImageView.setImageDrawable(currentDeco);
                 emptyBorder();
@@ -202,7 +259,7 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
             public void onClick(View v) {
                 Drawable highlight = getResources().getDrawable(R.drawable.ic_border);
                 currentDeco = getResources().getDrawable(R.drawable.deco_cookie);
-                ImageView temp = addDecoration(mImageView,v);
+                ImageView temp = addDecoration(mImageView,v,"cookie");
                 mRrootLayout.addView(temp);
                 mImageView.setImageDrawable(currentDeco);
                 emptyBorder();
@@ -215,7 +272,7 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
             public void onClick(View v) {
                 Drawable highlight = getResources().getDrawable(R.drawable.ic_border);
                 currentDeco = getResources().getDrawable(R.drawable.deco_sprinkles);
-                ImageView temp = addDecoration(mImageView,v);
+                ImageView temp = addDecoration(mImageView,v,"sprinkling");
                 mRrootLayout.addView(temp);
                 mImageView.setImageDrawable(currentDeco);
                 emptyBorder();
@@ -228,7 +285,7 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
             public void onClick(View v) {
                 Drawable highlight = getResources().getDrawable( R.drawable.ic_border);
                 currentDeco = getResources().getDrawable(R.drawable.deco_strawberry);
-                ImageView temp = addDecoration(mImageView,v);
+                ImageView temp = addDecoration(mImageView,v,"strawberry");
                 mRrootLayout.addView(temp);
                 mImageView.setImageDrawable(currentDeco);
                 emptyBorder();
@@ -241,7 +298,7 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
             public void onClick(View v) {
                 Drawable highlight = getResources().getDrawable( R.drawable.ic_border);
                 currentDeco = getResources().getDrawable(R.drawable.deco_candle);
-                ImageView temp = addDecoration(mImageView,v);
+                ImageView temp = addDecoration(mImageView,v,"candle");
                 mRrootLayout.addView(temp);
                 mImageView.setImageDrawable(currentDeco);
                 emptyBorder();
@@ -254,7 +311,7 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
             public void onClick(View v) {
                 Drawable highlight = getResources().getDrawable( R.drawable.ic_border);
                 currentDeco = getResources().getDrawable(R.drawable.deco_beans);
-                ImageView temp = addDecoration(mImageView,v);
+                ImageView temp = addDecoration(mImageView,v,"bean");
                 //temp.setPadding(mImageView.,mImageView.getTop(),mImageView.getRight(),mImageView.getBottom());
                 mRrootLayout.addView(temp);
                 mImageView.setImageDrawable(currentDeco);
@@ -265,7 +322,7 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
 
     }
 
-    private ImageView addDecoration( ImageView mImageView, View view){
+    private ImageView addDecoration( ImageView mImageView, View view, String type){
         ImageView temp = new ImageView(Step4Activity.this);
         int w = (int) (50 * Step4Activity.this.getResources().getDisplayMetrics().density);
         int h = (int) (50 * Step4Activity.this.getResources().getDisplayMetrics().density);
@@ -274,6 +331,9 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
         temp.setImageDrawable(mImageView.getDrawable());
         temp.setX(position_x-w);
         temp.setY(position_y-h);
+        decorations.add(type);
+        X.add(position_x-w);
+        Y.add(position_y-h);
 
         return temp;
 
