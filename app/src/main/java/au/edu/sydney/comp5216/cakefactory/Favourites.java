@@ -1,44 +1,53 @@
 package au.edu.sydney.comp5216.cakefactory;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
-import adapter.FavouriteAdapter;
-import model.FavouriteModel;
+import adapter.ListBaseAdapter;
+import custom_font.ExpandableHeightListView;
+import model.Article;
+import model.User;
 
-public class Favourites extends AppCompatActivity {
+public class Favourites extends AppCompatActivity implements EventListener<DocumentSnapshot> {
 
-    private FavouriteAdapter favouriteAdapter;
-    private RecyclerView recyclerView;
-    private ArrayList<FavouriteModel> favouriteModelArrayList = new ArrayList<>();
+    private ListBaseAdapter baseAdapter;
+    private ExpandableHeightListView listview;
+    private ArrayList<Article> Bean = new ArrayList<>();
+    private ArrayList<String> userArticles = new ArrayList<>();
 
-    private Integer[] imgs = {
-            R.drawable.img1,
-            R.drawable.img1,
-            R.drawable.img1};
-    private String[] titles = {
-            "Wild Honey at Scotts Square",
-            "Wild Honey at Scotts Square",
-            "Wild Honey at Scotts Square"};
-    private String[] subtittles = {
-            "473 Keeling Station",
-            "473 Keeling Station",
-            "473 Keeling Station"};
-    private int[] ratings = {4, 4, 4};
-    private String[] reviews = {
-            "238 reviews",
-            "238 reviews",
-            "238 reviews"};
+    private FirebaseFirestore db;
+    private CollectionReference articles;
+    private DocumentReference mUserRef;
+    private ListenerRegistration mUserRegistration;
+
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+    private int[] IMAGE1 = {R.drawable.newsname1, R.drawable.newsname1, R.drawable.newsname1};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,17 +69,74 @@ public class Favourites extends AppCompatActivity {
             }
         });
 
-        recyclerView = findViewById(R.id.recycler);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Favourites.this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-        for (int i = 0; i < 3; i++) {
-            favouriteModelArrayList.add(
-                    new FavouriteModel(imgs[i], titles[i], subtittles[i], ratings[i], reviews[i]));
+        SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
+        String userId = preferences.getString("user_id", "0");
+        userId = "US8ef5moenRIrBHB5P7aySB8ssx2";
+        if (userId == null) {
+            throw new IllegalArgumentException("Must pass extra userId");
         }
 
-        favouriteAdapter = new FavouriteAdapter(Favourites.this, favouriteModelArrayList);
-        recyclerView.setAdapter(favouriteAdapter);
+        // Initial database
+        db = FirebaseFirestore.getInstance();
+        articles = db.collection("article");
+        mUserRef = db.collection("users").document(userId);
+
+        readFromDatabase();
+
+        listview = findViewById(R.id.listview);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mUserRegistration = mUserRef.addSnapshotListener(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    /**
+     * Listener for the User document ({@link #mUserRef}).
+     */
+    @Override
+    public void onEvent(DocumentSnapshot snapshot, FirebaseFirestoreException e) {
+        userArticles = snapshot.toObject(User.class).getArticles();
+    }
+
+    private void readFromDatabase() {
+        // Attach a listener to read the data at our posts reference
+        db.collection("article")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            if (userArticles.contains(document.getId())) {
+                                String author = document.get("author").toString();
+                                String title = document.get("title").toString();
+                                String content = document.get("content").toString();
+                                String sub = document.get("newssub").toString();
+                                String image = document.get("image").toString();
+                                Date date = document.getDate("date");
+                                String strDate = dateFormat.format(date);
+                                addToList(author, title, content, strDate, sub, image);
+                            }
+                        }
+
+                        addbaseAdapter();
+                    }
+                });
+    }
+
+    private void addToList(String author, String title, String content, String date, String sub, String image) {
+        Bean.add(new Article(IMAGE1[0], image, author, date, title, sub));
+    }
+
+    private void addbaseAdapter() {
+        baseAdapter = new ListBaseAdapter(Favourites.this, Bean);
+        listview.setAdapter(baseAdapter);
+        baseAdapter.notifyDataSetChanged();
     }
 }

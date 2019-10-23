@@ -48,7 +48,6 @@ public class RecommendationDetailActivity extends AppCompatActivity implements
         // Get reference to the recommendation
         mRecommendationRef = mFirestore.collection("recommendations")
                 .document(recommendationId);
-
     }
 
     @Override
