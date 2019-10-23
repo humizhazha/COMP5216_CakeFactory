@@ -59,6 +59,7 @@ public class DesignDetail extends AppCompatActivity {
 
 
         fillInInformation();
+        drawDecoration();
 
     }
     private void fillInInformation(){
@@ -80,7 +81,7 @@ public class DesignDetail extends AppCompatActivity {
         Y = currentDesign.getY();
         int w = (int) (50 * DesignDetail.this.getResources().getDisplayMetrics().density);
         int h = (int) (50 * DesignDetail.this.getResources().getDisplayMetrics().density);
-        for(int i=0;i<decorations.size();i++){
+        for(int i=0;i<decorations.size()-1;i++){
 
             ImageView temp = new ImageView(DesignDetail.this);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(w, h);
@@ -92,14 +93,14 @@ public class DesignDetail extends AppCompatActivity {
             }else if(decorations.get(i).equals("candle")){
                 temp.setImageDrawable(candle);
             }else if(decorations.get(i).equals("bean")){
-                temp.setImageDrawable(candle);
+                temp.setImageDrawable(beans);
             }else if(decorations.get(i).equals("cookie")){
                 temp.setImageDrawable(cookie);
             }else{
                 temp.setImageDrawable(marshmallow);
             }
-            temp.setX(X.get(i));
-            temp.setY(Y.get(i));
+            temp.setX(X.get(i+1));
+            temp.setY(Y.get(i+1));
             cakeBase.addView(temp);
 
         }
