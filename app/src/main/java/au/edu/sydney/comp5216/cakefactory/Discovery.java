@@ -64,15 +64,12 @@ public class Discovery extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
     }
 
     private void initFirestore() {
-
         db = FirebaseFirestore.getInstance();
         articles = db.collection("article");
-
     }
 
 
@@ -110,8 +107,6 @@ public class Discovery extends Fragment {
                         }
                     }
                 });
-
-
     }
 
     private void addToList(String author, String title, String content, String date, String sub, String image) {
@@ -161,7 +156,6 @@ public class Discovery extends Fragment {
         return true;
     }
 
-
     public void addSearchListener() {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,10 +176,7 @@ public class Discovery extends Fragment {
                     baseAdapter = new ListBaseAdapter(getContext(), result);
                     listview.setAdapter(baseAdapter);
                     baseAdapter.notifyDataSetChanged();
-
                 }
-
-
             }
         });
 

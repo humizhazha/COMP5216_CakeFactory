@@ -3,17 +3,21 @@ package au.edu.sydney.comp5216.cakefactory;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -21,8 +25,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.annotation.Nullable;
 
@@ -30,7 +37,7 @@ import adapter.ProfileAdapter;
 import de.hdodenhof.circleimageview.CircleImageView;
 import model.Profile;
 import model.Recommendation;
-//import model.User;
+import model.User;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -50,7 +57,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
 
     // Firebase
     private FirebaseFirestore mFirestore;
-    private Query mQuery;
     private DocumentReference mUserRef;
     private ListenerRegistration mUserRegistration;
 
@@ -97,6 +103,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
         // Get restaurant ID from extras
         SharedPreferences preferences = getActivity().getSharedPreferences("preferences", MODE_PRIVATE);
         String userId = preferences.getString("user_id", "0");
+        userId = "US8ef5moenRIrBHB5P7aySB8ssx2";
         if (userId == null) {
             throw new IllegalArgumentException("Must pass extra userId");
         }
@@ -104,19 +111,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
         FirebaseFirestore.setLoggingEnabled(true);
 
         // Initialize Firestore and the main RecyclerView
-        initFireStore(userId);
-        initRecyclerView();
-    }
-
-    /**
-     * Initialize Firebase
-     */
-    private void initFireStore(String user_id) {
         mFirestore = FirebaseFirestore.getInstance();
 
-        // Get all users
-        mQuery = mFirestore.collection("users");
-        mUserRef = mFirestore.collection("users").document(user_id);
+        // Get reference to the logined user
+        mUserRef = mFirestore.collection("users")
+                .document(userId);
+
+        initRecyclerView();
     }
 
     /**
@@ -140,6 +141,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
     @Override
     public void onStart() {
         super.onStart();
+        mUserRegistration = mUserRef.addSnapshotListener(this);
     }
 
     @Override
@@ -167,18 +169,21 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
     }
 
     /**
-     //     * Listener for the User document ({@link #mUserRef}).
-     //     */
+    * Listener for the User document ({@link #mUserRef}).
+    */
     @Override
-    public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirebaseFirestoreException e) {
-//        User user = snapshot.toObject(User.class);
-//        Glide.with(profile_image.getContext())
-//                .load(user.getAvatar())
-//                .into(profile_image);
-//
-//        name.setText(user.getUsername());
-//        favouriteNum.setText(user.getArticles().size());
-//        designNum.setText(user.getDesigns().size());
-//        orderNum.setText(user.getOrders().size());
+
+
+
+    public void onEvent(DocumentSnapshot snapshot, FirebaseFirestoreException e) {
+        User user = snapshot.toObject(User.class);
+        Glide.with(profile_image.getContext())
+                .load(user.getAvatar())
+                .into(profile_image);
+        name.setText(user.getUsername());
+        favouriteNum.setText(String.valueOf(user.getArticles().size()));
+        designNum.setText(String.valueOf(user.getDesigns().size()));
+        orderNum.setText(String.valueOf(user.getOrders().size()));
+
     }
 }

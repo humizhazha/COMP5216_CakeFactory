@@ -6,10 +6,7 @@
     android:layout_margin="10dp"
     android:background="#f2f2f2"
     android:elevation="8dp"
-    android:orientation="vertical"
-
-
-    >
+    android:orientation="vertical">
 
 
     <androidx.cardview.widget.CardView
@@ -17,7 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="#fff"
-
         android:orientation="vertical">
 
         <LinearLayout
@@ -79,7 +75,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -110,13 +106,11 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2.2"
+                    android:layout_weight="2.7"
                     android:orientation="vertical">
 
                     <ImageView
-
                         android:id="@+id/newsimage2"
-
                         android:layout_width="200px"
                         android:layout_height="200px"
                         android:scaleType="fitXY"
