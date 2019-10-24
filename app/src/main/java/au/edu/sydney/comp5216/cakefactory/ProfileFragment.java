@@ -97,7 +97,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
         // Get restaurant ID from extras
         SharedPreferences preferences = getActivity().getSharedPreferences("preferences", MODE_PRIVATE);
         String userId = preferences.getString("user_id", "0");
-        userId = "US8ef5moenRIrBHB5P7aySB8ssx2";
 
         if (userId == null) {
             throw new IllegalArgumentException("Must pass extra userId");
@@ -168,9 +167,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
     @Override
     public void onEvent(DocumentSnapshot snapshot, FirebaseFirestoreException e) {
         User user = snapshot.toObject(User.class);
-        Glide.with(profile_image.getContext())
-                .load(user.getAvatar())
-                .into(profile_image);
+//        Glide.with(profile_image.getContext())
+//                .load(user.getAvatar())
+//                .into(profile_image);
         name.setText(user.getUsername());
         favouriteNum.setText(String.valueOf(user.getArticles().size()));
         designNum.setText(String.valueOf(user.getDesigns().size()));

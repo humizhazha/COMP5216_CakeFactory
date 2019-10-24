@@ -247,7 +247,7 @@
 
                 <LinearLayout
                     android:id="@+id/navBar"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginLeft="50dp"
                     android:layout_marginTop="20dp"
@@ -256,6 +256,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:layout_weight="1"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
@@ -263,10 +264,10 @@
                         android:src="@drawable/back" />
 
                     <ImageView
+                        android:layout_weight="1"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="210dp"
                         android:onClick="goNext"
                         android:src="@drawable/nex" />
 

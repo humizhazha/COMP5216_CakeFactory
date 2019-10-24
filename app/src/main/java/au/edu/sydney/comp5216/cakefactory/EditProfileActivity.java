@@ -71,7 +71,6 @@ public class EditProfileActivity extends AppCompatActivity implements
         // Get user ID from extras
         SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
         userId = preferences.getString("user_id", "0");
-        userId = "US8ef5moenRIrBHB5P7aySB8ssx2";
         if (userId == null) {
             throw new IllegalArgumentException("Must pass extra userId");
         }

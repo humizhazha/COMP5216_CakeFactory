@@ -13,7 +13,6 @@ public class User {
     public static final String USERNAME = "username";
     public static final String EMAIL = "email";
     public static final String MOBILE = "mobile";
-//    public static final String PASSWORD = "password";
     public static final String AVATAR = "avatar";
     public static final String ARTICLE = "articles";
     public static final String DESIGN = "designs";
@@ -22,7 +21,6 @@ public class User {
     private String username;
     private String email;
     private String mobile;
-//    private String password;
     private String avatar;
     private ArrayList<String> articles;
     private ArrayList<String> designs;
@@ -64,14 +62,6 @@ public class User {
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
-
-//    public String getPassword() {
-//        return password;
-//    }
-//
-//    public void setPassword(String password) {
-//        this.password = password;
-//    }
 
     public String getAvatar() {
         return avatar;

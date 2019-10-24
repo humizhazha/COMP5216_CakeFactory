@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -152,7 +151,6 @@ public class EditProfileDetailActivity extends AppCompatActivity implements
         // Get user ID from extras
         SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
         userId = preferences.getString("user_id", "0");
-        userId = "US8ef5moenRIrBHB5P7aySB8ssx2";
 
         if (userId == null) {
             throw new IllegalArgumentException("Must pass extra userId");
