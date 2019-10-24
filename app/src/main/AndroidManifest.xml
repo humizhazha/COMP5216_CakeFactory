@@ -36,7 +36,6 @@
         <activity android:name=".Setting"></activity>
         <activity android:name=".DesignDetail"></activity>
         <activity android:name=".ViewArticleAcitivity"></activity>
-        <activity android:name=".SignInActivity"></activity>
         <activity android:name=".CheckOutActivity"></activity>
     </application>
 
