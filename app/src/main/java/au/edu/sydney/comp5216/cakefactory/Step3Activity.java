@@ -14,6 +14,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import model.DesignModel;
 
+/**
+ * Step 3 Activity
+ * Ask user to select cake flavour
+ * User click next button to step 4
+ */
 public class Step3Activity extends AppCompatActivity {
     private ImageView chocolate;
     private ImageView cheese;

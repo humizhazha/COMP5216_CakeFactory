@@ -1,34 +1,31 @@
 package au.edu.sydney.comp5216.cakefactory;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
-
-import androidx.appcompat.app.AppCompatActivity;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.view.ViewGroup;
-import android.view.MotionEvent;
-import android.content.Intent;
-import android.os.Bundle;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import androidx.annotation.NonNull;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Arrays;
-import model.DesignModel;
-import android.util.Log;
 
+import model.DesignModel;
+
+
+/**
+ * Step 4 Activity
+ * Ask user to do cake decoration
+ * User can select and drag decorations on blank cake base
+ */
 public class Step4Activity extends AppCompatActivity implements View.OnTouchListener {
     int windowwidth; // Actually the width of the RelativeLayout.
     int windowheight; // Actually the height of the RelativeLayout.

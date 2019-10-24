@@ -17,6 +17,11 @@ import android.widget.ImageView;
 
 import custom_font.ExpandableHeightListView;
 
+/**
+ * Step 0 Activity
+ * Show design instruction
+ * Show the button to start design
+ */
 public class Step0Activity extends Fragment {
 
     public Step0Activity() {

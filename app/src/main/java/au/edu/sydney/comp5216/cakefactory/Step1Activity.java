@@ -16,6 +16,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import model.DesignModel;
 
+/**
+ * Step 1 Activity
+ * Ask user to select cake shape
+ * User click next button to step 2
+ */
 public class Step1Activity extends AppCompatActivity {
 
     private ImageView square;

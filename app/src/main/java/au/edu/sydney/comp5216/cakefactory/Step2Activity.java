@@ -14,6 +14,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import model.DesignModel;
 
+/**
+ * Step 2 Activity
+ * Ask user to select cake type
+ * User click next button to step 3
+ */
 public class Step2Activity extends AppCompatActivity {
     private ImageView wedding;
     private ImageView birthday;

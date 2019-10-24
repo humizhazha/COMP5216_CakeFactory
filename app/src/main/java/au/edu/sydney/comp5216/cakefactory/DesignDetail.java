@@ -31,6 +31,11 @@ import java.util.Map;
 
 import model.DesignModel;
 
+/**
+ * Design Detail Activity
+ * Show design'detail information
+ * Show selected shape, flavour, type and decoration design
+ */
 public class DesignDetail extends AppCompatActivity {
 
     private DesignModel currentDesign;
