@@ -98,6 +98,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
         SharedPreferences preferences = getActivity().getSharedPreferences("preferences", MODE_PRIVATE);
         String userId = preferences.getString("user_id", "0");
         userId = "US8ef5moenRIrBHB5P7aySB8ssx2";
+
         if (userId == null) {
             throw new IllegalArgumentException("Must pass extra userId");
         }
@@ -153,7 +154,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
                 startActivity(new Intent(getActivity(), Orders.class));
                 break;
             case R.id.design:
-                startActivity(new Intent(getActivity(), RecommendationActivity.class));
+                startActivity(new Intent(getActivity(), MyDesignActivity.class));
                 break;
             case R.id.setting:
                 startActivity(new Intent(getActivity(), Setting.class));

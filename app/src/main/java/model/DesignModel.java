@@ -15,6 +15,18 @@ public class DesignModel implements Serializable{
     ArrayList<Integer> X;
     ArrayList<Integer> Y;
 
+    public DesignModel(){}
+
+    public DesignModel(String shape, String type, String flavour,
+                       ArrayList<String> decorations, ArrayList<Integer> X, ArrayList<Integer> Y) {
+        this.shape = shape;
+        this.type = type;
+        this.flavour = flavour;
+        this.decorations = decorations;
+        this.X = X;
+        this.Y = Y;
+    }
+
     public String getShape() {
         return shape;
     }
