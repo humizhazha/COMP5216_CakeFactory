@@ -1,21 +1,13 @@
 package au.edu.sydney.comp5216.cakefactory;
 
-import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 
-import custom_font.ExpandableHeightListView;
+import androidx.fragment.app.Fragment;
 
 /**
  * Step 0 Activity
@@ -43,6 +35,8 @@ public class Step0Activity extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        //Set up listener for Start Design button
+        //If clicked, dump to Step1 activity
         Button startDesign = getActivity().findViewById(R.id.startDesign);
         startDesign.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

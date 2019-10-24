@@ -1,27 +1,29 @@
 package au.edu.sydney.comp5216.cakefactory;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.EditText;
 import android.widget.Toast;
-import android.content.Intent;
-import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.firebase.ui.auth.AuthUI;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseUser;
-import android.util.Log;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+/**
+ * Sign In Activity
+ * User can sign in use email address
+ */
 public class SignInActivity extends AppCompatActivity {
     TextView signUp;
     EditText email_edit;
@@ -47,6 +49,7 @@ public class SignInActivity extends AppCompatActivity {
 
     /**
      * Check if any edittext field is empty
+     *
      * @return if edittext is empty, return true.
      */
     private boolean isEmpty(EditText etText) {
@@ -56,7 +59,11 @@ public class SignInActivity extends AppCompatActivity {
         return true;
     }
 
-    private void setUpListener(){
+    /**
+     * Set up SignIn and SignUp button Listener
+     */
+    private void setUpListener() {
+        //If user clicks Sign up, go to SignUp activity
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,14 +74,15 @@ public class SignInActivity extends AppCompatActivity {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                email_edit = (EditText)findViewById(R.id.email);
-                password_edit = (EditText)findViewById(R.id.password);
-                if(isEmpty(email_edit)||isEmpty(password_edit)){
+                email_edit = (EditText) findViewById(R.id.email);
+                password_edit = (EditText) findViewById(R.id.password);
+                //Check if user input is empty
+                if (isEmpty(email_edit) || isEmpty(password_edit)) {
                     Toast.makeText(SignInActivity.this, "Email or password can't be blank!", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     email = email_edit.getText().toString();
                     password = password_edit.getText().toString();
-                    startSignIn(email,password);
+                    startSignIn(email, password);
                 }
 
             }
@@ -83,7 +91,11 @@ public class SignInActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Authenticate user account in Firebase
+     * @value email: user's email
+     * @value password: user's password
+     */
     private void startSignIn(String email, String password) {
 
         mAuth.signInWithEmailAndPassword(email, password)

@@ -18,6 +18,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+/**
+ * Sign up Activity
+ * User register by input email, password and mobile phone
+ * Click Sign in to enter our application
+ */
 public class SignUpActivity extends AppCompatActivity {
     EditText email_edit;
     EditText password_edit;
@@ -52,6 +57,9 @@ public class SignUpActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Set up SignIn button Listener
+     */
     private void setUpListener() {
 
         signIn.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +69,8 @@ public class SignUpActivity extends AppCompatActivity {
                 password_edit = (EditText) findViewById(R.id.password);
                 mobile_edit = (EditText) findViewById(R.id.mobile);
                 repassword_edit = (EditText) findViewById(R.id.repassword);
+
+                //If EditText is empty, warn the user
                 if (isEmpty(email_edit) || isEmpty(password_edit) || isEmpty(mobile_edit) || isEmpty(repassword_edit)) {
                     Toast.makeText(SignUpActivity.this, "Email or password can't be blank!", Toast.LENGTH_SHORT).show();
                 } else {
@@ -68,6 +78,9 @@ public class SignUpActivity extends AppCompatActivity {
                     password = password_edit.getText().toString();
                     mobile = mobile_edit.getText().toString();
                     repassword = repassword_edit.getText().toString();
+
+                    //If password and repeated password is same, warn the user
+                    //Else create new account in Firebase
                     if(password.equals(repassword)){
                         startSignIn(email, password);
                     }else{
@@ -80,6 +93,11 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Create a new account in Firebase
+     * @value email: user's email
+     * @value password: user's password
+     */
     private void startSignIn(String email, String password) {
 
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -93,7 +111,7 @@ public class SignUpActivity extends AppCompatActivity {
                             Intent it = new Intent(SignUpActivity.this, MainActivity.class);
                             startActivity(it);
                         } else {
-                            // If sign in fails, display a message to the user.
+                            // If sign up fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(SignUpActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
@@ -101,5 +119,12 @@ public class SignUpActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+    /**
+     * Set up Go back button Listener, go back to SignIn page
+     */
+    private void goToSignIn(View view){
+        Intent it = new Intent(SignUpActivity.this, SignInActivity.class);
+        startActivity(it);
     }
 }

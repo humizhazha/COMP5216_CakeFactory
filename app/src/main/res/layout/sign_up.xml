@@ -130,9 +130,9 @@
                     android:layout_height="60dp"
                     android:src="@drawable/signin"
                     android:scaleType="fitXY"
-                  android:layout_gravity="center"
+                    android:onClick="goToSignIn"
+                    android:layout_gravity="center"
                     android:layout_marginTop="18dp"
-
                     />
 
             </LinearLayout>
