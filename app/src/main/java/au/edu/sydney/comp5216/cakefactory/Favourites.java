@@ -131,7 +131,7 @@ public class Favourites extends AppCompatActivity implements EventListener<Docum
                                 int like = Integer.parseInt(document.get("like").toString());
                                 Date date = document.getDate("date");
                                 String strDate = dateFormat.format(date);
-                                addToList(author, title, content, strDate, sub, image,like);
+                                addToList(author, title, content, strDate, sub, image,like, document.getId());
                             }
                         }
 
@@ -140,8 +140,11 @@ public class Favourites extends AppCompatActivity implements EventListener<Docum
                 });
     }
 
-    private void addToList(String author, String title, String content, String date, String sub, String image, int like) {
-        Bean.add(new Article(IMAGE1[0], image, author, date, title, sub, content,like));
+    private void addToList(String author, String title, String content, String date, String sub, String image, int like,String article_id) {
+        Article article = new Article(IMAGE1[0], image, author, date, title, sub, content, like);
+        article.setArticle_id(article_id);
+        Bean.add(article);
+
     }
 
     private void addbaseAdapter() {

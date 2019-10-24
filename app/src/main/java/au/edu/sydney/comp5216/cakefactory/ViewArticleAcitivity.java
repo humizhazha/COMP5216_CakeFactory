@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import model.Article;
 
@@ -29,6 +30,7 @@ public class ViewArticleAcitivity extends AppCompatActivity {
     ImageView like;
     ImageView unfavorite;
     ImageView favorite;
+    private FirebaseFirestore db;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,13 +44,14 @@ public class ViewArticleAcitivity extends AppCompatActivity {
         date = (TextView) findViewById(R.id.date);
         like_number = (TextView) findViewById(R.id.number);
         news_content = (TextView) findViewById(R.id.content);
-        newsimage = (ImageView)findViewById(R.id.newsimage);
-        unlike = (ImageView)findViewById(R.id.upvote);
-        like = (ImageView)findViewById(R.id.upvote_click);
-        unfavorite = (ImageView)findViewById(R.id.favorite);
-        favorite = (ImageView)findViewById(R.id.favorite_click);
+        newsimage = (ImageView) findViewById(R.id.newsimage);
+        unlike = (ImageView) findViewById(R.id.upvote);
+        like = (ImageView) findViewById(R.id.upvote_click);
+        unfavorite = (ImageView) findViewById(R.id.favorite);
+        favorite = (ImageView) findViewById(R.id.favorite_click);
         like.setVisibility(View.INVISIBLE);
         favorite.setVisibility(View.INVISIBLE);
+        db = FirebaseFirestore.getInstance();
 
         ImageView goBack = findViewById(R.id.backArrow);
         goBack.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +67,8 @@ public class ViewArticleAcitivity extends AppCompatActivity {
         addLikeListener();
         addFavoriteListener();
     }
-    private void fillInArticle(){
+
+    private void fillInArticle() {
         author.setText(article.getNewsname());
         title.setText(article.getNews());
         date.setText(article.getTime());
@@ -75,7 +79,7 @@ public class ViewArticleAcitivity extends AppCompatActivity {
         like_number.setText(String.valueOf(article.getLike()));
     }
 
-    private void addLikeListener(){
+    private void addLikeListener() {
 
         unlike.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +88,8 @@ public class ViewArticleAcitivity extends AppCompatActivity {
                 unlike.setVisibility(View.INVISIBLE);
                 like.setVisibility(View.VISIBLE);
                 currentLike++;
+                updateLikeInFireBase(currentLike);
+                article.setLike(currentLike);
                 like_number.setText(String.valueOf(currentLike));
             }
         });
@@ -94,13 +100,23 @@ public class ViewArticleAcitivity extends AppCompatActivity {
                 unlike.setVisibility(View.VISIBLE);
                 like.setVisibility(View.INVISIBLE);
                 currentLike--;
+                updateLikeInFireBase(currentLike);
+                article.setLike(currentLike);
                 like_number.setText(String.valueOf(currentLike));
 
             }
         });
     }
 
-    private void addFavoriteListener(){
+    private void updateLikeInFireBase(int currentlike) {
+
+        db.collection("article")
+                .document(article.getArticle_id())
+                .update("like", currentlike);
+
+    }
+
+    private void addFavoriteListener() {
 
         unfavorite.setOnClickListener(new View.OnClickListener() {
             @Override

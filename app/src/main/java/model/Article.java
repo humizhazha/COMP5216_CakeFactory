@@ -7,6 +7,8 @@ import java.io.Serializable;
  */
 public class Article implements Serializable {
     private int newsimage1;
+
+    private String article_id;
     private String newsimage2;
     private String newsname;
     private String time;
@@ -91,6 +93,14 @@ public class Article implements Serializable {
 
     public void setNewssub(String newssub) {
         this.newssub = newssub;
+    }
+
+    public String getArticle_id() {
+        return article_id;
+    }
+
+    public void setArticle_id(String article_id) {
+        this.article_id = article_id;
     }
 
 

@@ -88,7 +88,7 @@ public class Discovery extends Fragment {
                                 int like = Integer.parseInt(document.get("like").toString());
                                 Date date = document.getDate("date");
                                 String strDate = dateFormat.format(date);
-                                addToList(author, title, content, strDate, sub, image,like);
+                                addToList(author, title, content, strDate, sub, image,like,document.getId());
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                             }
 
@@ -100,9 +100,9 @@ public class Discovery extends Fragment {
                 });
     }
 
-    private void addToList(String author, String title, String content, String date, String sub, String image, int like) {
+    private void addToList(String author, String title, String content, String date, String sub, String image, int like,String article_id) {
         Article article = new Article(IMAGE1[0], image, author, date, title, sub, content, like);
-
+        article.setArticle_id(article_id);
         Bean.add(article);
 
     }
