@@ -1,18 +1,21 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * Model for Article layout
  */
-public class Article {
+public class Article implements Serializable {
     private int newsimage1;
     private String newsimage2;
     private String newsname;
     private String time;
     private String news;
     private String newssub;
+    private String content;
 
 
-    public Article(int newsimage1, String newsimage2, String newsname, String time, String news, String newssub) {
+    public Article(int newsimage1, String newsimage2, String newsname, String time, String news, String newssub, String content) {
 
         this.newsimage1 = newsimage1;
         this.newsimage2 = newsimage2;
@@ -20,7 +23,16 @@ public class Article {
         this.time = time;
         this.news = news;
         this.newssub = newssub;
+        this.content = content;
 
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public int getNewsimage1() {
@@ -70,7 +82,6 @@ public class Article {
     public void setNewssub(String newssub) {
         this.newssub = newssub;
     }
-
 
 
 }

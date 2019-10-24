@@ -1,38 +1,34 @@
 package au.edu.sydney.comp5216.cakefactory;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.Date;
-
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.OnCompleteListener;
-
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
-import androidx.annotation.NonNull;
+import java.util.Date;
 
 import adapter.ListBaseAdapter;
 import custom_font.ExpandableHeightListView;
 import model.Article;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
 /**
  * Discovery page layout, a fragment inside MainActivity
@@ -104,7 +100,7 @@ public class Discovery extends Fragment {
     }
 
     private void addToList(String author, String title, String content, String date, String sub, String image) {
-        Article article = new Article(IMAGE1[0], image, author, date, title, sub);
+        Article article = new Article(IMAGE1[0], image, author, date, title, sub, content);
 
         Bean.add(article);
 
@@ -127,15 +123,25 @@ public class Discovery extends Fragment {
         listview = getActivity().findViewById(R.id.listview);
         search = (EditText) getActivity().findViewById(R.id.autotext);
         addSearchListener();
+        setUpListViewListener();
 
 
-//
-//        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//                startActivity(new Intent(getActivity(), ViewArticleAcitivity.class));
-//            }
-//        });
+    }
+    private void setUpListViewListener(){
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Article article = (Article)baseAdapter.getItem(position);
+                Intent intent = new Intent(getActivity(), ViewArticleAcitivity.class);
+                if (intent != null) {
+                    intent.putExtra("article", article);
+
+                    startActivity(intent);
+                }
+
+            }
+        });
+
     }
 
     /**

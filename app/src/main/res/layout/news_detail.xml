@@ -23,6 +23,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/newsimage"
                     android:layout_width="match_parent"
                     android:layout_height="230dp"
                     android:scaleType="centerCrop"
@@ -43,6 +44,7 @@
                     android:orientation="vertical">
 
                     <custom_font.MyTextView_Roboto_Regular
+                        android:id="@+id/author"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="John Doe"
@@ -51,6 +53,7 @@
 
 
                     <custom_font.MyTextView_Roboto_Bold
+                        android:id="@+id/title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -59,6 +62,7 @@
                         android:textSize="20sp" />
 
                     <custom_font.MyTextView_Roboto_Regular
+                        android:id="@+id/date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -71,14 +75,15 @@
             </LinearLayout>
 
 
-            <custom_font.MyTextView_Roboto_Light
+            <custom_font.MyTextView_Roboto_Regular
+                android:id="@+id/content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
                 android:lineSpacingExtra="2dp"
-                android:text="Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus. Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum"
+                android:text=""
                 android:textColor="@color/colorTex"
-                android:textSize="13sp" />
+                android:textSize="15sp" />
 
 
         </LinearLayout>

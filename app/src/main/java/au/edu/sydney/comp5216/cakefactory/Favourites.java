@@ -125,7 +125,7 @@ public class Favourites extends AppCompatActivity implements EventListener<Docum
                             if (userArticles.contains(document.getId())) {
                                 String author = document.get("author").toString();
                                 String title = document.get("title").toString();
-                                String content = document.get("content").toString();
+                                String content = document.get("content").toString().replaceAll("\\n", "\n");
                                 String sub = document.get("newssub").toString();
                                 String image = document.get("image").toString();
                                 Date date = document.getDate("date");
@@ -140,7 +140,7 @@ public class Favourites extends AppCompatActivity implements EventListener<Docum
     }
 
     private void addToList(String author, String title, String content, String date, String sub, String image) {
-        Bean.add(new Article(IMAGE1[0], image, author, date, title, sub));
+        Bean.add(new Article(IMAGE1[0], image, author, date, title, sub, content));
     }
 
     private void addbaseAdapter() {
