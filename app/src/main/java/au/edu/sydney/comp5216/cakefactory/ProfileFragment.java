@@ -167,9 +167,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
     @Override
     public void onEvent(DocumentSnapshot snapshot, FirebaseFirestoreException e) {
         User user = snapshot.toObject(User.class);
-//        Glide.with(profile_image.getContext())
-//                .load(user.getAvatar())
-//                .into(profile_image);
+        Glide.with(profile_image.getContext())
+                .load(user.getAvatar())
+                .into(profile_image);
         name.setText(user.getUsername());
         favouriteNum.setText(String.valueOf(user.getArticles().size()));
         designNum.setText(String.valueOf(user.getDesigns().size()));
