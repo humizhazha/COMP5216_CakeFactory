@@ -80,6 +80,9 @@ public class Favourites extends AppCompatActivity implements EventListener<Docum
             throw new IllegalArgumentException("Must pass extra userId");
         }
 
+        // Enable Firestore logging
+        FirebaseFirestore.setLoggingEnabled(true);
+
         // Initial database
         db = FirebaseFirestore.getInstance();
         articles = db.collection("article");

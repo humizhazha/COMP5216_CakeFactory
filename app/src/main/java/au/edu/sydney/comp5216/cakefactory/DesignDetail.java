@@ -19,7 +19,12 @@ import androidx.fragment.app.Fragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
 
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
@@ -36,7 +41,11 @@ import model.DesignModel;
  * Show design'detail information
  * Show selected shape, flavour, type and decoration design
  */
-public class DesignDetail extends AppCompatActivity {
+public class DesignDetail extends AppCompatActivity implements
+        EventListener<DocumentSnapshot> {
+
+    public static final String KEY_DESIGN_ID = "key_design_id";
+    private String designId;
 
     private DesignModel currentDesign;
     TextView flavour;
@@ -51,14 +60,16 @@ public class DesignDetail extends AppCompatActivity {
     private Drawable sprinkling;
     private ViewGroup cakeBase;
     private FirebaseFirestore db;
+    private DocumentReference mDesignRef;
+    private ListenerRegistration mDesignReg;
     private CollectionReference design;
     private static final String TAG = DesignDetail.class.getSimpleName();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.design_detail);
-        currentDesign = (DesignModel)getIntent().getSerializableExtra("design");
 
         //get drawable initilize with drawable
         strawberry = getResources().getDrawable(R.drawable.deco_strawberry);
@@ -75,18 +86,37 @@ public class DesignDetail extends AppCompatActivity {
         shape = (TextView) findViewById(R.id.shape_text);
         date = (TextView) findViewById(R.id.date_text);
 
-
         initFirestore();
-        fillInInformation();
-        drawDecoration();
 
+        Bundle extras = getIntent().getExtras();
+        if(extras != null && extras.containsKey(KEY_DESIGN_ID)) {
+            designId = extras.getString(KEY_DESIGN_ID);
+            mDesignRef = db.collection("design").document(designId);
+        } else {
+            currentDesign = (DesignModel)getIntent().getSerializableExtra("design");
+            fillInInformation();
+            drawDecoration();
+        }
     }
-    private void initFirestore() {
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(mDesignReg != null){
+            mDesignReg = mDesignRef.addSnapshotListener(this);
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    private void initFirestore() {
         db = FirebaseFirestore.getInstance();
         design = db.collection("design");
-
     }
+
     private void fillInInformation(){
         //Set all the design information
         shape.setText(currentDesign.getShape());
@@ -159,6 +189,14 @@ public class DesignDetail extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onEvent(DocumentSnapshot snapshot, FirebaseFirestoreException e) {
+        currentDesign = snapshot.toObject(DesignModel.class);
 
+        // Set all the design information
+        shape.setText(currentDesign.getShape());
+        flavour.setText(currentDesign.getFlavour());
+        type.setText(currentDesign.getType());
+    }
 
 }

@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".MainActivity"
+            android:name=".MyDesignActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
 
-<!--        <activity android:name=".MainActivity"/>-->
+        <activity android:name=".MainActivity"/>
         <activity android:name=".SignUpActivity"></activity>
         <activity android:name=".Step1Activity"></activity>
         <activity android:name=".Step2Activity"></activity>
@@ -29,6 +29,7 @@
         <activity android:name=".EditProfileActivity"></activity>
         <activity android:name=".EditProfileDetailActivity"></activity>
         <activity android:name=".Favourites"></activity>
+<!--        <activity android:name=".MyDesignActivity"></activity>-->
         <activity android:name=".RecommendationActivity"></activity>
         <activity android:name=".RecommendationDetailActivity"></activity>
         <activity android:name=".Orders"></activity>
