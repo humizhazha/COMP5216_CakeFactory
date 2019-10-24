@@ -1,5 +1,7 @@
 package au.edu.sydney.comp5216.cakefactory;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -156,7 +159,21 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
                 startActivity(new Intent(getActivity(), MyDesignActivity.class));
                 break;
             case R.id.setting:
-                startActivity(new Intent(getActivity(), Setting.class));
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Logout")
+                        .setMessage("Are you going to logout?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                FirebaseAuth.getInstance().signOut();
+                                Intent it = new Intent(getActivity(), SignInActivity.class);
+                                getActivity().finish();
+                                startActivity(it);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialogInterface, int i) {}
+                        });
+                builder.create().show();
                 break;
         }
     }
@@ -172,8 +189,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
                 .into(profile_image);
         name.setText(user.getUsername());
         favouriteNum.setText(String.valueOf(user.getArticles().size()));
-        designNum.setText(String.valueOf(user.getDesigns().size()));
-        orderNum.setText(String.valueOf(user.getOrders().size()));
-
+        designNum.setText(String.valueOf(user.getDesigns()));
+        orderNum.setText(String.valueOf(user.getOrders()));
     }
 }

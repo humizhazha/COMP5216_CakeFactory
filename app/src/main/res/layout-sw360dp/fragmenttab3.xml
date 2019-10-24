@@ -29,7 +29,7 @@
 
 
 
-                    <customfonts.MyTextView
+                    <TextView
                         android:layout_weight="1"
                         android:id="@+id/shipping"
                         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
 
 
 
-                    <customfonts.MyTextView
+                    <TextView
 
                         android:id="@+id/edit"
                         android:layout_weight="0.6"
@@ -63,7 +63,7 @@
 
 
 
-            <customfonts.MyTextView
+            <TextView
                 android:paddingTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                 android:textColor="#333333"
                 />
 
-            <customfonts.MyTextView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="309, Baker Street, 390022 NY"
@@ -126,7 +126,7 @@
         >
 
 
-            <customfonts.MyTextView
+            <TextView
                 android:layout_weight="1"
                 android:id="@+id/total1"
                 android:layout_width="match_parent"
@@ -139,7 +139,7 @@
 
 
 
-            <customfonts.MyTextView
+            <TextView
 
                 android:id="@+id/total2"
                 android:layout_weight="0.6"
@@ -160,7 +160,7 @@
 
 
 
-    <customfonts.MyTextView
+    <TextView
         android:id="@+id/pay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

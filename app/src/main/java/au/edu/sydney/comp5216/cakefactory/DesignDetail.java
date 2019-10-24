@@ -1,6 +1,8 @@
 package au.edu.sydney.comp5216.cakefactory;
 
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,8 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -29,15 +31,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
 import model.DesignModel;
+import model.User;
 
 /**
  * Design Detail Activity
@@ -52,6 +55,7 @@ public class DesignDetail extends AppCompatActivity implements
     private String designId;
 
     private DesignModel currentDesign;
+    private User currentUser;
     TextView flavour;
     TextView shape;
     TextView type;
@@ -70,8 +74,10 @@ public class DesignDetail extends AppCompatActivity implements
     private CollectionReference design;
 
     private Boolean isProfile = false;
+    private String datetime;
     private static final String TAG = DesignDetail.class.getSimpleName();
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -92,23 +98,26 @@ public class DesignDetail extends AppCompatActivity implements
         beans = getResources().getDrawable(R.drawable.deco_beans);
         candle = getResources().getDrawable(R.drawable.deco_candle);
         sprinkling = getResources().getDrawable(R.drawable.deco_sprinkles);
-        cakeBase = (ViewGroup) findViewById(R.id.base);
+        cakeBase = findViewById(R.id.base);
         cakeBase = findViewById(R.id.base);
 
         //Initlize the textview
-        flavour = (TextView) findViewById(R.id.flavour_text);
-        type = (TextView) findViewById(R.id.type_text);
-        shape = (TextView) findViewById(R.id.shape_text);
-        date = (TextView) findViewById(R.id.date_text);
+        flavour = findViewById(R.id.flavour_text);
+        type = findViewById(R.id.type_text);
+        shape = findViewById(R.id.shape_text);
+        date = findViewById(R.id.date_text);
         flavour = findViewById(R.id.flavour_text);
         type = findViewById(R.id.type_text);
         shape = findViewById(R.id.shape_text);
         date = findViewById(R.id.date_text);
 
         initFirestore();
+
         findViewById(R.id.backArrow).setOnClickListener(this);
 
-        db = FirebaseFirestore.getInstance();
+        LocalDate date2 = LocalDate.now(ZoneId.of("Australia/Sydney"));
+        ZonedDateTime time = Instant.now().atZone(ZoneId.of("Australia/Sydney"));
+        datetime = date2.toString() + " " + time.toString().substring(11, 19);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null && extras.containsKey(KEY_DESIGN_ID)) {
@@ -127,7 +136,7 @@ public class DesignDetail extends AppCompatActivity implements
                                 shape.setText(currentDesign.getShape());
                                 flavour.setText(currentDesign.getFlavour());
                                 type.setText(currentDesign.getType());
-                                date.setText("24/10/2019");
+                                date.setText(currentDesign.getDatetime());
                                 drawDecoration();
                             } else {
                                 Log.d(TAG, "get failed with ", task.getException());
@@ -164,9 +173,7 @@ public class DesignDetail extends AppCompatActivity implements
         shape.setText(currentDesign.getShape());
         flavour.setText(currentDesign.getFlavour());
         type.setText(currentDesign.getType());
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date now = new Date();
-        date.setText(formatter.format(now));
+        date.setText(datetime);
 
     }
 
@@ -211,7 +218,11 @@ public class DesignDetail extends AppCompatActivity implements
         startActivity(it);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void saveDesign(View view) {
+        SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
+        final String userId = preferences.getString("user_id", "0");
+
         Map<String, Object> data = new HashMap<>();
         data.put("flavour", currentDesign.getFlavour());
         data.put("shape", currentDesign.getShape());
@@ -219,6 +230,24 @@ public class DesignDetail extends AppCompatActivity implements
         data.put("X", currentDesign.getX());
         data.put("Y", currentDesign.getY());
         data.put("decorations", currentDesign.getDecorations());
+        data.put("user", userId);
+        data.put("datetime", datetime);
+
+        db.collection("users").document(userId).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            currentUser = document.toObject(User.class);
+                            int preNum = currentUser.getDesigns();
+                            db.collection("users")
+                                    .document(userId)
+                                    .update("designs", preNum + 1);
+                        }
+                    }
+        });
+
         design.document()
                 .set(data)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -227,6 +256,8 @@ public class DesignDetail extends AppCompatActivity implements
                         Log.d(TAG, "DocumentSnapshot successfully written!");
                         Toast.makeText(DesignDetail.this, "Your design has been saved!", Toast.LENGTH_SHORT).show();
 
+                        Intent intent = new Intent(DesignDetail.this, MainActivity.class);
+                        startActivity(intent);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -235,9 +266,6 @@ public class DesignDetail extends AppCompatActivity implements
                         Log.w(TAG, "Error writing document", e);
                     }
                 });
-
-        Intent intent = new Intent(DesignDetail.this, MainActivity.class);
-        startActivity(intent);
     }
 
     @Override

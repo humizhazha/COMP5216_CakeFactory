@@ -50,7 +50,7 @@
                         android:layout_marginLeft="6dp"
                         android:layout_weight="1"
                         android:gravity="left"
-                        android:text="24/10/2019"
+                        android:text=""
                         android:textColor="@color/colorTex"
                         android:textSize="16dp" />
 
@@ -87,7 +87,7 @@
                             android:layout_height="wrap_content"
                             android:drawablePadding="13dp"
                             android:layout_weight="1"
-                            android:text="square"
+                            android:text=""
                             android:textColor="@color/listtext"
                             android:textSize="12dp" />
                     </LinearLayout>
@@ -113,7 +113,7 @@
                             android:layout_height="wrap_content"
                             android:drawablePadding="13dp"
                             android:layout_weight="1"
-                            android:text="roll"
+                            android:text=""
                             android:textColor="@color/listtext"
                             android:textSize="12dp" />
                     </LinearLayout>
@@ -139,7 +139,7 @@
                             android:layout_height="wrap_content"
                             android:drawablePadding="13dp"
                             android:layout_weight="1"
-                            android:text="matcha"
+                            android:text=""
                             android:textColor="@color/listtext"
                             android:textSize="12dp" />
                     </LinearLayout>

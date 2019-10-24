@@ -35,7 +35,7 @@
 
 
 
-                <customfonts.MyTextView
+                <TextView
                     android:layout_weight="1"
                     android:id="@+id/payment"
                     android:layout_width="match_parent"
@@ -80,7 +80,7 @@
 
 
 
-                <customfonts.MyTextView
+                <TextView
                     android:layout_weight="1"
                     android:id="@+id/detail"
                     android:layout_width="match_parent"
@@ -112,7 +112,7 @@
                 >
 
 
-                <customfonts.MyTextView
+                <TextView
                     android:layout_weight="1"
                     android:id="@+id/cardno1"
                     android:layout_width="match_parent"
@@ -128,7 +128,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <customfonts.MyEditText
+                    <EditText
 
                         android:id="@+id/cardno2"
                         android:layout_width="match_parent"
@@ -172,7 +172,7 @@
 
 
 
-                    <customfonts.MyTextView
+                    <TextView
                         android:layout_weight="1"
                         android:id="@+id/date1"
                         android:layout_width="match_parent"
@@ -189,7 +189,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <customfonts.MyEditText
+                        <EditText
 
                             android:id="@+id/date2"
                             android:layout_width="match_parent"
@@ -199,7 +199,7 @@
                             android:maxLines="1"
                             android:text=""
                             android:maxLength="8"
-                            android:hint="dd/year"
+                            android:hint="dd/yyyy"
                             android:textSize="13dp"
                             android:textColorHint="@color/color"
 
@@ -233,12 +233,13 @@
 
                         >
 
-                        <customfonts.MyTextView
+                        <TextView
                             android:layout_weight="1"
                             android:id="@+id/cvv1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="CVV"
+                            android:hint="XXX"
                             android:textSize="12dp"
                             android:textColor="@color/color" />
                     </LinearLayout>
@@ -250,7 +251,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <customfonts.MyEditText
+                        <EditText
 
                             android:id="@+id/cvv2"
                             android:layout_width="match_parent"
@@ -286,7 +287,7 @@
                 >
 
 
-                <customfonts.MyTextView
+                <TextView
                     android:layout_weight="1"
                     android:id="@+id/name1"
                     android:layout_width="match_parent"
@@ -302,7 +303,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <customfonts.MyEditText
+                    <EditText
 
                         android:id="@+id/name2"
                         android:layout_width="match_parent"
@@ -335,7 +336,7 @@
 
 
 
-                <customfonts.MyTextView
+                <TextView
                     android:layout_weight="1"
                     android:id="@+id/total1"
                     android:layout_width="match_parent"
@@ -349,7 +350,7 @@
 
 
 
-                <customfonts.MyTextView
+                <TextView
 
                     android:id="@+id/total2"
                     android:layout_weight="0.6"
@@ -394,11 +395,10 @@
 
     </ScrollView>
 
-    ******ORDER******
 
 
     <!--
-        <customfonts.MyTextView
+        <TextView
             android:id="@+id/order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

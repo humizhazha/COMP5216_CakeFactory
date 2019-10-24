@@ -47,6 +47,7 @@ public class DesignAdapter extends FirestoreAdapter<DesignAdapter.ViewHolder>{
         TextView shape;
         TextView type;
         TextView flavour;
+        TextView datetime;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -54,6 +55,7 @@ public class DesignAdapter extends FirestoreAdapter<DesignAdapter.ViewHolder>{
             shape  = itemView.findViewById(R.id.shapeText);
             type = itemView.findViewById(R.id.typeText);
             flavour = itemView.findViewById(R.id.flavourText);
+            datetime =  itemView.findViewById(R.id.date_text);
         }
 
         public void bind(final DocumentSnapshot snapshot,
@@ -64,6 +66,7 @@ public class DesignAdapter extends FirestoreAdapter<DesignAdapter.ViewHolder>{
             shape.setText(design.getShape());
             type.setText(design.getType());
             flavour.setText(design.getFlavour());
+            datetime.setText(design.getDatetime());
 
             // Click listener
             itemView.findViewById(R.id.cardView).setOnClickListener(new View.OnClickListener() {

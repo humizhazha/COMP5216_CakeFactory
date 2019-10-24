@@ -23,13 +23,13 @@ public class User {
     private String mobile;
     private String avatar;
     private ArrayList<String> articles;
-    private ArrayList<String> designs;
-    private ArrayList<String> orders;
+    private int designs;
+    private int orders;
 
     public User() {}
 
     public User(String username, String email, String mobile, String avatar,
-                ArrayList<String> articles, ArrayList<String> designs, ArrayList<String> orders) {
+                ArrayList<String> articles, int designs, int orders) {
         this.username = username;
         this.email = email;
         this.mobile = mobile;
@@ -79,19 +79,19 @@ public class User {
         this.articles = articles;
     }
 
-    public ArrayList<String> getDesigns() {
+    public int getDesigns() {
         return designs;
     }
 
-    public void setDesigns(ArrayList<String> designs) {
+    public void setDesigns(int designs) {
         this.designs = designs;
     }
 
-    public ArrayList<String> getOrders() {
+    public int getOrders() {
         return orders;
     }
 
-    public void setOrders(ArrayList<String> orders) {
+    public void setOrders(int orders) {
         this.orders = orders;
     }
 }

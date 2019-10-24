@@ -27,8 +27,6 @@ public class MyDesignActivity extends AppCompatActivity implements
     private DesignAdapter mAdapter;
     private RecyclerView recyclerView;
 
-    private ArrayList<String> userDesigns = new ArrayList<>();
-
     // Firebase
     private FirebaseFirestore mFirestore;
     private Query mQuery;
@@ -58,7 +56,6 @@ public class MyDesignActivity extends AppCompatActivity implements
         // Initialize Firestore and the main RecyclerView
         initFireStore();
         initRecyclerView();
-//        readFromDatabase();
     }
 
     /**
@@ -67,9 +64,9 @@ public class MyDesignActivity extends AppCompatActivity implements
     private void initFireStore() {
         mFirestore = FirebaseFirestore.getInstance();
 
-        // Get all recommendations
+        // Get all designs
         mQuery = mFirestore.collection("design")
-                .whereArrayContains("user", userId);
+                .whereEqualTo("user", userId).orderBy("datetime", Query.Direction.DESCENDING);
     }
 
     /**

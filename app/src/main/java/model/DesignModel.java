@@ -11,17 +11,19 @@ public class DesignModel implements Serializable{
     String shape;
     String type;
     String flavour;
+    String datetime;
     ArrayList<String> decorations;
     ArrayList<Integer> X;
     ArrayList<Integer> Y;
 
     public DesignModel(){}
 
-    public DesignModel(String shape, String type, String flavour,
+    public DesignModel(String shape, String type, String flavour,  String datetime,
                        ArrayList<String> decorations, ArrayList<Integer> X, ArrayList<Integer> Y) {
         this.shape = shape;
         this.type = type;
         this.flavour = flavour;
+        this.datetime = datetime;
         this.decorations = decorations;
         this.X = X;
         this.Y = Y;
@@ -76,4 +78,11 @@ public class DesignModel implements Serializable{
     }
 
 
+    public String getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
+    }
 }

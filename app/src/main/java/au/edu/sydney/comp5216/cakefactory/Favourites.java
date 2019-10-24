@@ -76,6 +76,7 @@ public class Favourites extends AppCompatActivity implements EventListener<Docum
 
         SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
         String userId = preferences.getString("user_id", "0");
+
         if (userId == null) {
             throw new IllegalArgumentException("Must pass extra userId");
         }
