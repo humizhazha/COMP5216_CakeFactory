@@ -120,14 +120,12 @@ public class Discovery extends Fragment {
         initFirestore();
         readFromDatabase();
 
-
         listview = getActivity().findViewById(R.id.listview);
         search = (EditText) getActivity().findViewById(R.id.autotext);
         addSearchListener();
         setUpListViewListener();
-
-
     }
+
     private void setUpListViewListener(){
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

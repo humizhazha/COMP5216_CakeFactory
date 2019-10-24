@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -90,6 +91,7 @@ public class Favourites extends AppCompatActivity implements EventListener<Docum
         readFromDatabase();
 
         listview = findViewById(R.id.listview);
+        setUpListViewListener();
     }
 
     @Override
@@ -153,5 +155,21 @@ public class Favourites extends AppCompatActivity implements EventListener<Docum
         baseAdapter = new ListBaseAdapter(Favourites.this, Bean);
         listview.setAdapter(baseAdapter);
         baseAdapter.notifyDataSetChanged();
+    }
+
+    private void setUpListViewListener(){
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Article article = (Article)baseAdapter.getItem(position);
+                Intent intent = new Intent(Favourites.this, ViewArticleAcitivity.class);
+                if (intent != null) {
+                    intent.putExtra("article", article);
+                    startActivity(intent);
+                }
+
+            }
+        });
+
     }
 }
