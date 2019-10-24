@@ -14,8 +14,10 @@ public class Article implements Serializable {
     private String newssub;
     private String content;
 
+    private int like;
 
-    public Article(int newsimage1, String newsimage2, String newsname, String time, String news, String newssub, String content) {
+
+    public Article(int newsimage1, String newsimage2, String newsname, String time, String news, String newssub, String content, int like) {
 
         this.newsimage1 = newsimage1;
         this.newsimage2 = newsimage2;
@@ -24,7 +26,15 @@ public class Article implements Serializable {
         this.news = news;
         this.newssub = newssub;
         this.content = content;
+        this.like = like;
 
+    }
+    public int getLike() {
+        return like;
+    }
+
+    public void setLike(int like) {
+        this.like = like;
     }
 
     public String getContent() {

@@ -85,9 +85,10 @@ public class Discovery extends Fragment {
                                 String content = document.get("content").toString();
                                 String sub = document.get("newssub").toString();
                                 String image = document.get("image").toString();
+                                int like = Integer.parseInt(document.get("like").toString());
                                 Date date = document.getDate("date");
                                 String strDate = dateFormat.format(date);
-                                addToList(author, title, content, strDate, sub, image);
+                                addToList(author, title, content, strDate, sub, image,like);
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                             }
 
@@ -99,8 +100,8 @@ public class Discovery extends Fragment {
                 });
     }
 
-    private void addToList(String author, String title, String content, String date, String sub, String image) {
-        Article article = new Article(IMAGE1[0], image, author, date, title, sub, content);
+    private void addToList(String author, String title, String content, String date, String sub, String image, int like) {
+        Article article = new Article(IMAGE1[0], image, author, date, title, sub, content, like);
 
         Bean.add(article);
 

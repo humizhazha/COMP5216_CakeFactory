@@ -128,9 +128,10 @@ public class Favourites extends AppCompatActivity implements EventListener<Docum
                                 String content = document.get("content").toString().replaceAll("\\n", "\n");
                                 String sub = document.get("newssub").toString();
                                 String image = document.get("image").toString();
+                                int like = Integer.parseInt(document.get("like").toString());
                                 Date date = document.getDate("date");
                                 String strDate = dateFormat.format(date);
-                                addToList(author, title, content, strDate, sub, image);
+                                addToList(author, title, content, strDate, sub, image,like);
                             }
                         }
 
@@ -139,8 +140,8 @@ public class Favourites extends AppCompatActivity implements EventListener<Docum
                 });
     }
 
-    private void addToList(String author, String title, String content, String date, String sub, String image) {
-        Bean.add(new Article(IMAGE1[0], image, author, date, title, sub, content));
+    private void addToList(String author, String title, String content, String date, String sub, String image, int like) {
+        Bean.add(new Article(IMAGE1[0], image, author, date, title, sub, content,like));
     }
 
     private void addbaseAdapter() {

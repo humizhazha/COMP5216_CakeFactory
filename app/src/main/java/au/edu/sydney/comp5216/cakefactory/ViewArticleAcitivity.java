@@ -22,8 +22,13 @@ public class ViewArticleAcitivity extends AppCompatActivity {
     TextView author;
     TextView title;
     TextView date;
+    TextView like_number;
     TextView news_content;
     ImageView newsimage;
+    ImageView unlike;
+    ImageView like;
+    ImageView unfavorite;
+    ImageView favorite;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +40,15 @@ public class ViewArticleAcitivity extends AppCompatActivity {
         author = (TextView) findViewById(R.id.author);
         title = (TextView) findViewById(R.id.title);
         date = (TextView) findViewById(R.id.date);
+        like_number = (TextView) findViewById(R.id.number);
         news_content = (TextView) findViewById(R.id.content);
         newsimage = (ImageView)findViewById(R.id.newsimage);
+        unlike = (ImageView)findViewById(R.id.upvote);
+        like = (ImageView)findViewById(R.id.upvote_click);
+        unfavorite = (ImageView)findViewById(R.id.favorite);
+        favorite = (ImageView)findViewById(R.id.favorite_click);
+        like.setVisibility(View.INVISIBLE);
+        favorite.setVisibility(View.INVISIBLE);
 
         ImageView goBack = findViewById(R.id.backArrow);
         goBack.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +61,8 @@ public class ViewArticleAcitivity extends AppCompatActivity {
             }
         });
         fillInArticle();
+        addLikeListener();
+        addFavoriteListener();
     }
     private void fillInArticle(){
         author.setText(article.getNewsname());
@@ -58,5 +72,49 @@ public class ViewArticleAcitivity extends AppCompatActivity {
         Glide.with(newsimage.getContext())
                 .load(article.getNewsimage2())
                 .into(newsimage);
+        like_number.setText(String.valueOf(article.getLike()));
+    }
+
+    private void addLikeListener(){
+
+        unlike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int currentLike = Integer.parseInt(like_number.getText().toString());
+                unlike.setVisibility(View.INVISIBLE);
+                like.setVisibility(View.VISIBLE);
+                currentLike++;
+                like_number.setText(String.valueOf(currentLike));
+            }
+        });
+        like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int currentLike = Integer.parseInt(like_number.getText().toString());
+                unlike.setVisibility(View.VISIBLE);
+                like.setVisibility(View.INVISIBLE);
+                currentLike--;
+                like_number.setText(String.valueOf(currentLike));
+
+            }
+        });
+    }
+
+    private void addFavoriteListener(){
+
+        unfavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                unfavorite.setVisibility(View.INVISIBLE);
+                favorite.setVisibility(View.VISIBLE);
+            }
+        });
+        favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                unfavorite.setVisibility(View.VISIBLE);
+                favorite.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 }
