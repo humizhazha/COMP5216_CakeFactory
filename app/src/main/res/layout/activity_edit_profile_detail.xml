@@ -25,7 +25,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:background="@color/colorWhite"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <EditText
                 android:id="@+id/input"
@@ -33,7 +33,27 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
-                android:text="Username" />
+                android:text="Normal text" />
+
+            <EditText
+                android:id="@+id/input1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="invisible"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:hint="Old password" />
+
+            <EditText
+                android:id="@+id/input2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="invisible"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:hint="New password" />
 
         </LinearLayout>
 
@@ -50,7 +70,7 @@
             <Button
                 android:id="@+id/save"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
                 android:layout_marginLeft="-5dip"
@@ -62,7 +82,7 @@
             <Button
                 android:id="@+id/notSave"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:textColor="@color/colorRed"
                 android:layout_marginBottom="5dp"
                 android:minWidth="0dp"
@@ -75,7 +95,7 @@
             <Button
                 android:id="@+id/cancel"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:text="Cancel"/>
 
         </LinearLayout>

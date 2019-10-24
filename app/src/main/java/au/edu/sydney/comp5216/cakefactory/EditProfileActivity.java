@@ -34,14 +34,14 @@ public class EditProfileActivity extends AppCompatActivity implements
 
     String userId;
 
-    private ImageView setting;
     private ImageView avatar;
     private TextView username;
     private TextView email;
     private TextView mobile;
     private LinearLayout usernameView;
-    private LinearLayout emailView;;
-    private LinearLayout mobileView;;
+    private LinearLayout emailView;
+    private LinearLayout mobileView;
+    private LinearLayout passwordView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +50,6 @@ public class EditProfileActivity extends AppCompatActivity implements
 
         TextView toolbar = findViewById(R.id.toolbar);
         toolbar.setText("Edit Profile");
-
-        setting = findViewById(R.id.setting);
-        setting.setVisibility(View.VISIBLE);
 
         avatar = findViewById(R.id.avatar);
 
@@ -63,12 +60,13 @@ public class EditProfileActivity extends AppCompatActivity implements
         usernameView = findViewById(R.id.username);
         emailView = findViewById(R.id.email);
         mobileView = findViewById(R.id.mobile);
+        passwordView = findViewById(R.id.password);
 
         findViewById(R.id.backArrow).setOnClickListener(this);
-        findViewById(R.id.setting).setOnClickListener(this);
         findViewById(R.id.username).setOnClickListener(this);
         findViewById(R.id.email).setOnClickListener(this);
         findViewById(R.id.mobile).setOnClickListener(this);
+        findViewById(R.id.password).setOnClickListener(this);
 
         // Get user ID from extras
         SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
@@ -77,6 +75,7 @@ public class EditProfileActivity extends AppCompatActivity implements
         if (userId == null) {
             throw new IllegalArgumentException("Must pass extra userId");
         }
+
         // Enable Firestore logging
         FirebaseFirestore.setLoggingEnabled(true);
 
@@ -110,7 +109,6 @@ public class EditProfileActivity extends AppCompatActivity implements
                 finish();
                 startActivity(intent);
                 break;
-            case R.id.setting:
             case R.id.username:
                 intent = new Intent(EditProfileActivity.this,
                         EditProfileDetailActivity.class);
@@ -127,6 +125,12 @@ public class EditProfileActivity extends AppCompatActivity implements
                 intent = new Intent(EditProfileActivity.this,
                         EditProfileDetailActivity.class);
                 intent.putExtra("Mobile", mobile.getText());
+                startActivity(intent);
+                break;
+            case R.id.password:
+                intent = new Intent(EditProfileActivity.this,
+                        EditProfileDetailActivity.class);
+                intent.putExtra("Password", email.getText());
                 startActivity(intent);
                 break;
         }
