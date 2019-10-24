@@ -252,7 +252,7 @@
 
                     <EditText
 
-                        android:id="@+id/zip2"
+                        android:id="@+id/postcode"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="#333333"
@@ -304,7 +304,7 @@
 
                     <EditText
 
-                        android:id="@+id/city2"
+                        android:id="@+id/state"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="#333333"

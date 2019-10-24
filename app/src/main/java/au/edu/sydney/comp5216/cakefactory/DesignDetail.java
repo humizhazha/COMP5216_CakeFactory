@@ -214,6 +214,7 @@ public class DesignDetail extends AppCompatActivity implements
         double price = calculatePrice(currentDesign.getDecorations());
         // it.putExtra()
         it.putExtra("price", price);
+        it.putExtra("design", mDesignRef.getId());
         finish();
         startActivity(it);
     }
@@ -257,6 +258,7 @@ public class DesignDetail extends AppCompatActivity implements
                         Toast.makeText(DesignDetail.this, "Your design has been saved!", Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(DesignDetail.this, MainActivity.class);
+                        intent.putExtra("Profile",true);
                         startActivity(intent);
                     }
                 })

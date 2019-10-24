@@ -153,7 +153,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
                 startActivity(new Intent(getActivity(), Favourites.class));
                 break;
             case R.id.order:
-                startActivity(new Intent(getActivity(), Orders.class));
+                startActivity(new Intent(getActivity(), OrderActivity.class));
                 break;
             case R.id.design:
                 startActivity(new Intent(getActivity(), MyDesignActivity.class));

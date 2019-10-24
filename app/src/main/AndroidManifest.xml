@@ -32,8 +32,7 @@
         <activity android:name=".MyDesignActivity"></activity>
         <activity android:name=".RecommendationActivity"></activity>
         <activity android:name=".RecommendationDetailActivity"></activity>
-        <activity android:name=".Orders"></activity>
-        <activity android:name=".Setting"></activity>
+        <activity android:name=".OrderActivity"></activity>
         <activity android:name=".DesignDetail"></activity>
         <activity android:name=".ViewArticleAcitivity"></activity>
         <activity android:name=".CheckOutActivity"></activity>
