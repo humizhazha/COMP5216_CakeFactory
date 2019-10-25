@@ -3,6 +3,7 @@ package au.edu.sydney.comp5216.cakefactory;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -20,6 +21,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -31,7 +33,6 @@ import java.util.Date;
 import adapter.ListBaseAdapter;
 import custom_font.ExpandableHeightListView;
 import model.Article;
-import model.User;
 
 /**
  * Collected article page
@@ -111,7 +112,24 @@ public class Favourites extends AppCompatActivity implements EventListener<Docum
      */
     @Override
     public void onEvent(DocumentSnapshot snapshot, FirebaseFirestoreException e) {
-        userArticles = snapshot.toObject(User.class).getArticles();
+        SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
+        String userId = preferences.getString("user_id", "0");
+
+        final CollectionReference itemsRef = db.collection("favorite");
+        Query query = itemsRef.whereEqualTo("user_id", userId);
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for(QueryDocumentSnapshot document : task.getResult()){
+                        userArticles.add(document.get("article_id").toString());
+                    }
+                } else {
+                    Log.d("Profile Fragment", "Error getting documents: ", task.getException());
+                }
+            }
+        });
+       // userArticles = snapshot.toObject(User.class).getArticles();
     }
 
     /**

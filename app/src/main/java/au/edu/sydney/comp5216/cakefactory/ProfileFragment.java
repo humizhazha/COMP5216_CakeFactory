@@ -5,29 +5,37 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
 import adapter.ProfileAdapter;
 import de.hdodenhof.circleimageview.CircleImageView;
+import model.Article;
 import model.Profile;
 import model.User;
 
@@ -45,6 +53,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
     private ProfileAdapter mAdapter;
     private RecyclerView recyclerView;
     private ArrayList<Profile> profileModelArrayList = new ArrayList<>();
+    private ArrayList<Article> favoriteArrayList = new ArrayList<>();
 
     private CircleImageView profile_image;
     private TextView name;
@@ -184,11 +193,29 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
     @Override
     public void onEvent(DocumentSnapshot snapshot, FirebaseFirestoreException e) {
         User user = snapshot.toObject(User.class);
+        SharedPreferences preferences = getActivity().getSharedPreferences("preferences", MODE_PRIVATE);
+        String userId = preferences.getString("user_id", "0");
+
+        final CollectionReference itemsRef = mFirestore.collection("favorite");
+        Query query = itemsRef.whereEqualTo("user_id", userId);
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    int count = task.getResult().size();
+                    favouriteNum.setText(String.valueOf(count));
+
+                } else {
+                    Log.d("Profile Fragment", "Error getting documents: ", task.getException());
+                }
+            }
+        });
+
+
         Glide.with(profile_image.getContext())
                 .load(user.getAvatar())
                 .into(profile_image);
         name.setText(user.getUsername());
-        favouriteNum.setText(String.valueOf(user.getArticles().size()));
         designNum.setText(String.valueOf(user.getDesigns()));
         orderNum.setText(String.valueOf(user.getOrders()));
     }

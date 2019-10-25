@@ -16,7 +16,10 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
@@ -168,20 +171,39 @@ public class ViewArticleAcitivity extends AppCompatActivity {
      * Add article to favorites collection in Firestore
      */
     private void addNewFavorite(){
+
         Map<String, Object> favorite = new HashMap<>();
         favorite.put("article_id", article.getArticle_id());
-
         favorite.put("user_id", userId);
         db.collection("favorite").document()
                 .set(favorite)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d("Design Detail", "DocumentSnapshot successfully written!");
+                        Log.d("View Article", "DocumentSnapshot successfully written!");
                         Toast.makeText(ViewArticleAcitivity.this, "Successfully added this article to My favorites",
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+    /**
+     * Delete article from favorite list
+     */
+    private void deleteFavorite(){
+        final CollectionReference itemsRef = db.collection("favorite");
+        Query query = itemsRef.whereEqualTo("article_id", article.getArticle_id()).whereEqualTo("user_id", userId);
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (DocumentSnapshot document : task.getResult()) {
+                        itemsRef.document(document.getId()).delete();
+                    }
+                } else {
+                    Log.d("View Article", "Error getting documents: ", task.getException());
+                }
+            }
+        });
     }
 
     /**
@@ -204,6 +226,7 @@ public class ViewArticleAcitivity extends AppCompatActivity {
             public void onClick(View view) {
                 unfavorite.setVisibility(View.VISIBLE);
                 favorite.setVisibility(View.INVISIBLE);
+                deleteFavorite();
             }
         });
     }
