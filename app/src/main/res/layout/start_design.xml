@@ -80,7 +80,7 @@
                 android:textColor="#1f2833"
                 android:textSize="13sp"
                 android:lineSpacingExtra="2dp"
-                android:text="Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus. Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum"
+                android:text="It's a online platform for you to design the cakes you want, by selecting cake size, shape, flavor, filling, frosting or topping on our phone application."
                 android:layout_margin="12dp"/>
 
             <custom_font.Button_Roboto_Medium

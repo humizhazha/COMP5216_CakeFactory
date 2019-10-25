@@ -3,16 +3,12 @@ package au.edu.sydney.comp5216.cakefactory;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Button;
-import android.widget.Toast;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import model.DesignModel;
 
@@ -78,6 +74,10 @@ public class Step1Activity extends AppCompatActivity {
         }
     }
 
+    /*
+     * Store current selection and get to next step
+     * If use does not make any selection, send error message
+     */
     public void goNext(View view) {
         if (currentDesign.getShape()==null) {
             Toast.makeText(Step1Activity.this, "Please select your cake shape!", Toast.LENGTH_SHORT).show();
@@ -92,6 +92,11 @@ public class Step1Activity extends AppCompatActivity {
         }
     }
 
+    /*
+     * Add Listener to all selection
+     * If selected, clear the border of previous selection
+     * Draw border for the selected one
+     */
     public void drawBorder() {
         square.setOnClickListener(new View.OnClickListener() {
             @Override

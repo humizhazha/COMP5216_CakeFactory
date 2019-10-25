@@ -107,6 +107,9 @@ public class ViewArticleAcitivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Fill in all the TextView with article information
+     */
     private void fillInArticle() {
         author.setText(article.getNewsname());
         title.setText(article.getNews());
@@ -118,6 +121,10 @@ public class ViewArticleAcitivity extends AppCompatActivity {
         like_number.setText(String.valueOf(article.getLike()));
     }
 
+    /**
+     * Add listener to like icon
+     * If click, change the state of like
+     */
     private void addLikeListener() {
 
         unlike.setOnClickListener(new View.OnClickListener() {
@@ -177,6 +184,10 @@ public class ViewArticleAcitivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Add listener to favorite icon
+     * If click, change the state of favorite
+     */
     private void addFavoriteListener() {
 
         unfavorite.setOnClickListener(new View.OnClickListener() {

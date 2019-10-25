@@ -5,12 +5,10 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import model.DesignModel;
 
@@ -75,6 +73,10 @@ public class Step2Activity extends AppCompatActivity {
         }
 
     }
+    /*
+     * Store current selection and get to next step
+     * If use does not make any selection, send error message
+     */
     public void goNext(View view) {
         Intent intent = new Intent(Step2Activity.this, Step3Activity.class);
         if(currentDesign.getType()==null){
@@ -89,6 +91,9 @@ public class Step2Activity extends AppCompatActivity {
 
 
     }
+    /*
+     * Go back to previous step
+     */
     public void goBack(View view) {
         Intent intent = new Intent(Step2Activity.this, Step1Activity.class);
         if (intent != null) {
@@ -96,6 +101,11 @@ public class Step2Activity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+    /*
+     * Add Listener to all selection
+     * If selected, clear the border of previous selection
+     * Draw border for the selected one
+     */
 
     public void drawBorder(){
         wedding.setOnClickListener(new View.OnClickListener() {

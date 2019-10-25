@@ -5,12 +5,10 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import model.DesignModel;
 
@@ -74,6 +72,10 @@ public class Step3Activity extends AppCompatActivity {
         }
 
     }
+    /*
+     * Store current selection and get to next step
+     * If use does not make any selection, send error message
+     */
     public void goNext(View view) {
         Intent intent = new Intent(Step3Activity.this, Step4Activity.class);
         if(currentDesign.getFlavour()==null){
@@ -87,6 +89,9 @@ public class Step3Activity extends AppCompatActivity {
         }
 
     }
+    /*
+     * Go back to previous step
+     */
     public void goBack(View view) {
         Intent intent = new Intent(Step3Activity.this, Step2Activity.class);
         if (intent != null) {
@@ -96,6 +101,11 @@ public class Step3Activity extends AppCompatActivity {
 
     }
 
+    /*
+     * Add Listener to all selection
+     * If selected, clear the border of previous selection
+     * Draw border for the selected one
+     */
     public void drawBorder(){
         chocolate.setOnClickListener(new View.OnClickListener() {
             @Override

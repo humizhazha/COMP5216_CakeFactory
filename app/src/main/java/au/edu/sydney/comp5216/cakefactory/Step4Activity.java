@@ -102,6 +102,9 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
     private boolean isOutReported = false;
 
 
+    /*
+     * Add event listener if user touch and move the decoration
+     */
     public boolean onTouch(View view, MotionEvent event) {
         final int X = (int) event.getRawX();
         final int Y = (int) event.getRawY();
@@ -152,8 +155,7 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
                 view.setLayoutParams(lp);
                 break;
         }
-        // invalidate is redundant if layout params are set or not needed if they are not set.
-//        mRrootLayout.invalidate();
+
         return true;
     }
 
@@ -171,6 +173,10 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
                 (view.getBottom() - windowheight) > viewPctHeight);
     }
 
+    /*
+     * Store the coordinates of the last decoration
+     * Go to next step
+     */
     public void goNext(View view) {
         if(selected!=null){
             decorations.add(selected);
@@ -190,6 +196,9 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
 
 
     }
+    /*
+     * Go back to previous step
+     */
     public void goBack(View view) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(Step4Activity.this);
@@ -215,6 +224,9 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
 
 
     }
+    /*
+     * Clear the border of all selection
+     */
     public void emptyBorder(){
         marshmallows.setBackground(null);
         cookie.setBackground(null);
@@ -224,6 +236,11 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
         candle.setBackground(null);
     }
 
+    /*
+     * Add Listener to all selection
+     * If selected, clear the border of previous selection
+     * Draw border for the selected one
+     */
     public void startDecorationListener(){
         marshmallows.setOnClickListener(new View.OnClickListener() {
             @Override
