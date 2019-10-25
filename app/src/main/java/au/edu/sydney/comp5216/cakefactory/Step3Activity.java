@@ -40,6 +40,7 @@ public class Step3Activity extends AppCompatActivity {
         ImageView goBack = findViewById(R.id.backArrow);
         goBack.setVisibility(View.INVISIBLE);
 
+        //Add right in left out animation
         this.overridePendingTransition(R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left);
 
@@ -54,7 +55,11 @@ public class Step3Activity extends AppCompatActivity {
 
     }
 
+    /*
+     * Initize the selection border based on previous selection
+     */
     private void iniBorder(){
+        //If user already made a selection before, draw the border
         if(currentDesign.getFlavour()!=null){
             String previousSelection = currentDesign.getFlavour();
             if(previousSelection.equals("chocolate")){

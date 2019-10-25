@@ -49,12 +49,14 @@ public class Step1Activity extends AppCompatActivity {
         heart = (ImageView) findViewById(R.id.heart);
         circle = (ImageView) findViewById(R.id.circle);
         if(getIntent().getSerializableExtra("design")!=null){
+            //If user already made a selection before, draw the border
             currentDesign = (DesignModel) getIntent().getSerializableExtra("design");
             iniBorder();
         }else{
             currentDesign = new DesignModel();
         }
 
+        //Add right in left out animation
         this.overridePendingTransition(R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left);
 

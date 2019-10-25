@@ -167,6 +167,9 @@ public class DesignDetail extends AppCompatActivity implements
         design = db.collection("design");
     }
 
+    /*
+     * Fill in TextView based on Model information
+     */
     private void fillInInformation() {
         //Set all the design information
         shape.setText(currentDesign.getShape());
@@ -176,17 +179,23 @@ public class DesignDetail extends AppCompatActivity implements
 
     }
 
+    /*
+     * Draw the cake decoration image based on topping name and coordinates
+     */
     private void drawDecoration() {
         ArrayList<String> decorations = currentDesign.getDecorations();
         ArrayList<Integer> X = currentDesign.getX();
         ArrayList<Integer> Y = currentDesign.getY();
+        //Get the width and height of decoration, each is 50dp*50dp
         int w = (int) (50 * DesignDetail.this.getResources().getDisplayMetrics().density);
         int h = (int) (50 * DesignDetail.this.getResources().getDisplayMetrics().density);
+        //Since the coordinate index starts from the second element
+        //Get each coordinate from index+1
         for (int i = 0; i < decorations.size() - 1; i++) {
-
             ImageView temp = new ImageView(DesignDetail.this);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(w, h);
             temp.setLayoutParams(layoutParams);
+            //Set decoration image based on decoration name
             if (decorations.get(i).equals("strawberry")) {
                 temp.setImageDrawable(strawberry);
             } else if (decorations.get(i).equals("sprinkling")) {
@@ -218,11 +227,16 @@ public class DesignDetail extends AppCompatActivity implements
         startActivity(it);
     }
 
+    /*
+     * Save design to database
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void saveDesign(View view) {
+        //get the designer's userID
         SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
         final String userId = preferences.getString("user_id", "0");
 
+        //Input all design information into HashMap
         Map<String, Object> data = new HashMap<>();
         data.put("flavour", currentDesign.getFlavour());
         data.put("shape", currentDesign.getShape());

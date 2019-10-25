@@ -63,6 +63,7 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
         goBack.setVisibility(View.INVISIBLE);
         currentDesign = (DesignModel) getIntent().getSerializableExtra("design");
 
+        //Aaa right in left out animation
         this.overridePendingTransition(R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left);
         // We are interested when the image view leaves its parent RelativeLayout
