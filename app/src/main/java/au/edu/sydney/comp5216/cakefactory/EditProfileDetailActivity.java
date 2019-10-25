@@ -123,7 +123,7 @@ public class EditProfileDetailActivity extends AppCompatActivity implements
                     newPass =  input2.getText().toString();
 
                     isChanged = true;
-                    done.setTextColor(Color.WHITE);
+                    done.setTextColor(Color.BLACK);
                     done.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             if(oldPass.equals(newPass)){
