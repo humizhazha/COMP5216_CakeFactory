@@ -70,6 +70,9 @@ public class Discovery extends Fragment {
         return inflater.inflate(R.layout.discovery, container, false);
     }
 
+    /**
+     * Read all the article data from Firestore
+     */
     private void readFromDatabase() {
         // Attach a listener to read the data at our posts reference
         db.collection("article")
@@ -100,6 +103,9 @@ public class Discovery extends Fragment {
                 });
     }
 
+    /**
+     * Add the information from Firestore to ArrayList
+     */
     private void addToList(String author, String title, String content, String date, String sub, String image, int like,String article_id) {
         Article article = new Article(IMAGE1[0], image, author, date, title, sub, content, like);
         article.setArticle_id(article_id);
@@ -155,6 +161,10 @@ public class Discovery extends Fragment {
         return true;
     }
 
+    /**
+     * Add search bar listener
+     * Query the search keywords in Firestore
+     */
     public void addSearchListener() {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,7 +181,7 @@ public class Discovery extends Fragment {
                             result.add(a);
                         }
                     }
-
+                    //Change the list view based on search result
                     baseAdapter = new ListBaseAdapter(getContext(), result);
                     listview.setAdapter(baseAdapter);
                     baseAdapter.notifyDataSetChanged();
