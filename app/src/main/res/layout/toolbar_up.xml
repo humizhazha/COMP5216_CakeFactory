@@ -3,23 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="40dp"
-    android:background="#f15421"
+    android:background="@color/fui_transparent"
     android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/backArrow"
         android:layout_width="25dp"
         android:layout_height="20dp"
-        android:src="@drawable/barrow"
-        android:tint="@android:color/white"/>
+        android:src="@drawable/rleftbutton"/>
 
-    <TextView
+    <custom_font.MyTextView_Roboto_Bold
         android:id="@+id/toolbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Toolbar Title"
-        android:layout_marginLeft="115dp"
-        android:textColor="@android:color/white" />
+        android:textSize="16dp"
+        android:layout_marginLeft="20dp"/>
 
     <TextView
         android:id="@+id/done"
@@ -27,7 +26,6 @@
         android:layout_height="wrap_content"
         android:text="Done"
         android:visibility="gone"
-        android:textColor="#a2a1b8"
         android:layout_marginRight="15dp"
         android:layout_gravity="right" />
 
@@ -38,7 +36,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_settings_black_24dp"
-        android:tint="@android:color/white"
         android:layout_gravity="right"/>
 
 </androidx.appcompat.widget.Toolbar>
