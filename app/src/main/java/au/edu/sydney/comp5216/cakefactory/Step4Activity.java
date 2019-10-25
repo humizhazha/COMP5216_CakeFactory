@@ -174,8 +174,8 @@ public class Step4Activity extends AppCompatActivity implements View.OnTouchList
     public void goNext(View view) {
         if(selected!=null){
             decorations.add(selected);
-            X.add(position_x);
-            Y.add(position_y);
+            X.add(mImageView.getLeft()-35);
+            Y.add(mImageView.getTop());
         }
         currentDesign.setDecorations(decorations);
         currentDesign.setX(X);

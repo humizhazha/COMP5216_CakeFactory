@@ -1,15 +1,27 @@
 package au.edu.sydney.comp5216.cakefactory;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import model.Article;
 
@@ -50,8 +62,8 @@ public class ViewArticleAcitivity extends AppCompatActivity {
         unfavorite = (ImageView) findViewById(R.id.favorite);
         favorite = (ImageView) findViewById(R.id.favorite_click);
         like.setVisibility(View.INVISIBLE);
-        favorite.setVisibility(View.INVISIBLE);
         db = FirebaseFirestore.getInstance();
+        showIfisMyFavorite();
 
         ImageView goBack = findViewById(R.id.backArrow);
         goBack.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +78,30 @@ public class ViewArticleAcitivity extends AppCompatActivity {
         fillInArticle();
         addLikeListener();
         addFavoriteListener();
+    }
+    /**
+     * If the user has already favorite this article
+     * Show the favorite icon
+     */
+    private void showIfisMyFavorite(){
+        db.collection("favorite")
+                .whereEqualTo("article_id", article.getArticle_id())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        if(document.getData()!=null) {
+                            favorite.setVisibility(View.INVISIBLE);
+                        }
+                    }
+                } else {
+                    Log.d("View Article", "Error getting documents: ", task.getException());
+                }
+            }
+        });
+        favorite.setVisibility(View.INVISIBLE);
     }
 
     private void fillInArticle() {
@@ -107,13 +143,36 @@ public class ViewArticleAcitivity extends AppCompatActivity {
             }
         });
     }
-
+    /**
+     * Update the number of likes in database
+     */
     private void updateLikeInFireBase(int currentlike) {
 
         db.collection("article")
                 .document(article.getArticle_id())
                 .update("like", currentlike);
 
+    }
+
+    /**
+     * Add article to favorites collection in Firestore
+     */
+    private void addNewFavorite(){
+        Map<String, Object> favorite = new HashMap<>();
+        favorite.put("article_id", article.getArticle_id());
+        SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
+        final String userId = preferences.getString("user_id", "0");
+        favorite.put("user_id", userId);
+        db.collection("favorite").document()
+                .set(favorite)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Design Detail", "DocumentSnapshot successfully written!");
+                        Toast.makeText(ViewArticleAcitivity.this, "Successfully added this article to My favorites",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void addFavoriteListener() {
@@ -123,6 +182,8 @@ public class ViewArticleAcitivity extends AppCompatActivity {
             public void onClick(View view) {
                 unfavorite.setVisibility(View.INVISIBLE);
                 favorite.setVisibility(View.VISIBLE);
+                addNewFavorite();
+
             }
         });
         favorite.setOnClickListener(new View.OnClickListener() {
