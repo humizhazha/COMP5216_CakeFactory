@@ -20,7 +20,7 @@ public class TabFragment3 extends Fragment {
 
     private ListView listview;
 
-    Typeface fonts1,fonts2;
+    Typeface fonts1, fonts2;
 
     private int[] IMAGE = {R.drawable.box, R.drawable.ball, R.drawable.bag,
             R.drawable.box, R.drawable.ball};
@@ -29,7 +29,7 @@ public class TabFragment3 extends Fragment {
 
     private String[] DESCRIPTION = {"One Size", "One Size", "Size L", "One Size", "One Size"};
 
-    private String[] DATE = {"$ 220.00","$ 49.00","$ 320.00","$ 220.00","$ 49.00"};
+    private String[] DATE = {"$ 220.00", "$ 49.00", "$ 320.00", "$ 220.00", "$ 49.00"};
 
     private ArrayList<Bean> Bean;
     private JayBaseAdapter baseAdapter;
@@ -39,12 +39,12 @@ public class TabFragment3 extends Fragment {
         view = inflater.inflate(R.layout.fragmenttab3, container, false);
 
 
-        listview = (ListView)view.findViewById(R.id.listview);
+        listview = (ListView) view.findViewById(R.id.listview);
 
 
         Bean = new ArrayList<Bean>();
 
-        for (int i= 0; i< TITLE.length; i++){
+        for (int i = 0; i < TITLE.length; i++) {
 
             Bean bean = new Bean(IMAGE[i], TITLE[i], DESCRIPTION[i], DATE[i]);
             Bean.add(bean);
@@ -58,27 +58,7 @@ public class TabFragment3 extends Fragment {
         listview.setAdapter(baseAdapter);
 
 
-//
-//        fonts1 =  Typeface.createFromAsset(TabFragment3.this.getAssets(),
-//                "fonts/Lato-Light.ttf");
-//
-//
-//
-//        fonts2 =  Typeface.createFromAsset(TabFragment3.this.getAssets(),
-//                "fonts/Lato-Regular.ttf");
-//
-//
-//
-//
-//        TextView t4 =(TextView)findViewById(R.id.shopping);
-//        t4.setTypeface(fonts2);
-//        TextView t5 =(TextView)findViewById(R.id.pay);
-//        t5.setTypeface(fonts1);
-
-
-
-
-        return  view;
+        return view;
 
     }
 }

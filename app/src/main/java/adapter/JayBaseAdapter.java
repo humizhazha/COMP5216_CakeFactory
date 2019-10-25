@@ -23,14 +23,7 @@ public class JayBaseAdapter extends BaseAdapter {
     ArrayList<Bean> bean;
 
 
-
-
-
-
-    Typeface fonts1,fonts2;
-
-
-
+    Typeface fonts1, fonts2;
 
 
     public JayBaseAdapter(Context context, ArrayList<Bean> bean) {
@@ -39,15 +32,6 @@ public class JayBaseAdapter extends BaseAdapter {
         this.context = context;
         this.bean = bean;
     }
-
-
-
-
-
-
-
-
-
 
 
     @Override
@@ -68,26 +52,23 @@ public class JayBaseAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        fonts1 =  Typeface.createFromAsset(context.getAssets(),
+        fonts1 = Typeface.createFromAsset(context.getAssets(),
                 "fonts/MavenPro-Regular.ttf");
-
-//        fonts2 = Typeface.createFromAsset(context.getAssets(),
-//                "fonts/Lato-Regular.ttf");
 
         ViewHolder viewHolder = null;
 
-        if (convertView == null){
-            LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.list,null);
+        if (convertView == null) {
+            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+            convertView = layoutInflater.inflate(R.layout.list, null);
 
             viewHolder = new ViewHolder();
 
-            viewHolder.image = (ImageView)convertView.findViewById(R.id.image);
-            viewHolder.title = (TextView)convertView.findViewById(R.id.title);
-            viewHolder.discription = (TextView)convertView.findViewById(R.id.description);
-            viewHolder.date = (TextView)convertView.findViewById(R.id.date);
+            viewHolder.image = (ImageView) convertView.findViewById(R.id.image);
+            viewHolder.title = (TextView) convertView.findViewById(R.id.title);
+            viewHolder.discription = (TextView) convertView.findViewById(R.id.description);
+            viewHolder.date = (TextView) convertView.findViewById(R.id.date);
 //            viewHolder.min = (ImageView)convertView.findViewById(R.id.min);
-            viewHolder.text = (TextView)convertView.findViewById(R.id.text);
+            viewHolder.text = (TextView) convertView.findViewById(R.id.text);
 //            viewHolder.plus = (ImageView)convertView.findViewById(R.id.plus);
 
 
@@ -99,18 +80,13 @@ public class JayBaseAdapter extends BaseAdapter {
             convertView.setTag(viewHolder);
 
 
-        }else {
+        } else {
 
-            viewHolder = (ViewHolder)convertView.getTag();
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
 
-
-
-
-
-
-        Bean bean = (Bean)getItem(position);
+        Bean bean = (Bean) getItem(position);
 
         viewHolder.image.setImageResource(bean.getImage());
         viewHolder.title.setText(bean.getTitle());
@@ -118,64 +94,11 @@ public class JayBaseAdapter extends BaseAdapter {
         viewHolder.date.setText(bean.getDate());
 
 
-//        number = 01;
-//        viewHolder.text.setText(""+number);
-//
-//        final ViewHolder finalViewHolder = viewHolder;
-//        viewHolder.min.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                if (number == 1){
-//                    finalViewHolder.text.setText("" + number);
-//            }
-//
-//                if (number > 1){
-//
-//                    number = number -1;
-//                    finalViewHolder.text.setText(""+number);
-//                }
-//
-//            }
-//        });
-//
-//        final ViewHolder finalViewHolder1 = viewHolder;
-//        viewHolder.plus.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                if (number == 10) {
-//                    finalViewHolder1.text.setText("" + number);
-//                }
-//
-//                if (number < 10) {
-//
-//                    number = number + 1;
-//                    finalViewHolder1.text.setText("" + number);
-//
-//                }
-//
-//
-//
-//
-//            }
-//        });
-
-
-
-
         return convertView;
     }
 
 
-
-
-
-
-
-
-
-    private class ViewHolder{
+    private class ViewHolder {
         ImageView image;
         TextView title;
         TextView discription;
@@ -183,17 +106,6 @@ public class JayBaseAdapter extends BaseAdapter {
         ImageView min;
         TextView text;
         ImageView plus;
-
-
-
-
-
-
-
-
-
-
-
 
 
     }

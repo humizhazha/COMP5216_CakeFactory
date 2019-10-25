@@ -217,6 +217,10 @@ public class DesignDetail extends AppCompatActivity implements
     }
 
 
+    /**
+     * The Listener for submit button
+     * Start activity to check out page
+     */
     public void submitDesign(View view) {
         Intent it = new Intent(DesignDetail.this, CheckOutActivity.class);
         double price = calculatePrice(currentDesign.getDecorations());
@@ -309,6 +313,9 @@ public class DesignDetail extends AppCompatActivity implements
         }
     }
 
+    /**
+     * Calculate the final price based on toppings
+     */
     private double calculatePrice(ArrayList<String> decorations) {
         double price = 88d;
         for (int i = 0; i < decorations.size() - 1; i++) {
