@@ -17,7 +17,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
@@ -43,6 +42,8 @@ public class ViewArticleAcitivity extends AppCompatActivity {
     ImageView unfavorite;
     ImageView favorite;
     private FirebaseFirestore db;
+    SharedPreferences preferences;
+    String userId;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,8 @@ public class ViewArticleAcitivity extends AppCompatActivity {
 
         TextView toolbar = findViewById(R.id.toolbar);
         toolbar.setText("Article");
+        preferences = getSharedPreferences("preferences", MODE_PRIVATE);
+        userId = preferences.getString("user_id", "0");
         article = (Article) getIntent().getSerializableExtra("article");
         author = (TextView) findViewById(R.id.author);
         title = (TextView) findViewById(R.id.title);
@@ -86,22 +89,22 @@ public class ViewArticleAcitivity extends AppCompatActivity {
     private void showIfisMyFavorite(){
         db.collection("favorite")
                 .whereEqualTo("article_id", article.getArticle_id())
+                .whereEqualTo("user_id", userId)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        if(document.getData()!=null) {
-                            favorite.setVisibility(View.INVISIBLE);
-                        }
+                    if(task.getResult().isEmpty()){
+                        favorite.setVisibility(View.INVISIBLE);
                     }
+
                 } else {
                     Log.d("View Article", "Error getting documents: ", task.getException());
                 }
             }
         });
-        favorite.setVisibility(View.INVISIBLE);
+
     }
 
     private void fillInArticle() {
@@ -160,8 +163,7 @@ public class ViewArticleAcitivity extends AppCompatActivity {
     private void addNewFavorite(){
         Map<String, Object> favorite = new HashMap<>();
         favorite.put("article_id", article.getArticle_id());
-        SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
-        final String userId = preferences.getString("user_id", "0");
+
         favorite.put("user_id", userId);
         db.collection("favorite").document()
                 .set(favorite)
