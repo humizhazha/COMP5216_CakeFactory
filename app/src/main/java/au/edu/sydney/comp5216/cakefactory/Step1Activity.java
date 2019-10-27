@@ -84,7 +84,6 @@ public class Step1Activity extends AppCompatActivity {
         if (currentDesign.getShape()==null) {
             Toast.makeText(Step1Activity.this, "Please select your cake shape!", Toast.LENGTH_SHORT).show();
         } else {
-            currentDesign.setShape(selected);
             Intent intent = new Intent(Step1Activity.this, Step2Activity.class);
             if (intent != null) {
                 intent.putExtra("design", currentDesign);

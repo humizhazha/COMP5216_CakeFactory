@@ -87,7 +87,6 @@ public class Step2Activity extends AppCompatActivity {
         if(currentDesign.getType()==null){
             Toast.makeText(Step2Activity.this, "Please select your cake type!", Toast.LENGTH_SHORT).show();
         }else{
-            currentDesign.setType(selected);
             if (intent != null) {
                 intent.putExtra("design", currentDesign);
                 startActivity(intent);

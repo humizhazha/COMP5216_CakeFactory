@@ -86,7 +86,6 @@ public class Step3Activity extends AppCompatActivity {
         if(currentDesign.getFlavour()==null){
             Toast.makeText(Step3Activity.this, "Please select your cake flavour!", Toast.LENGTH_SHORT).show();
         }else{
-            currentDesign.setFlavour(selected);
             if (intent != null) {
                 intent.putExtra("design", currentDesign);
                 startActivity(intent);
